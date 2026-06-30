@@ -65,7 +65,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--forest);hei
 .nav-cta:hover{background:var(--gold-lt)!important}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
 .hamburger span{width:22px;height:2px;background:#fff;border-radius:1px;display:block}
-.mob-nav{display:none;position:fixed;top:60px;left:0;right:0;z-index:490;background:var(--forest);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:.15rem;max-height:calc(100vh - 60px);overflow-y:auto}
+.mob-nav{display:none;position:fixed;top:60px;left:0;right:0;z-index:9999;background:var(--forest);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0;max-height:calc(100vh - 60px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .mob-nav.open{display:flex}
 .mob-nav a{color:rgba(255,255,255,.8);font-size:15px;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);text-decoration:none}
 .mob-nav a:last-child{border-bottom:none}
@@ -354,9 +354,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
       <div class="sub">
         <a href="#om-oss">Om KBK</a>
         <a href="#styrelsen">Styrelsen</a>
-        <a href="#arsmoten">Årsmöten</a>
+        <a href="#arsmoten">Årsmöten & Protokoll</a>
         <a href="#klubbinfo">Klubbinformation</a>
-        <a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank">Stadgar (PDF)</a>
+        <a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank">Stadgar (PDF) ↗</a>
         <a href="#hitta-hit">Hitta hit</a>
       </div>
     </div>
@@ -383,7 +383,8 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
 <nav class="mob-nav" id="mobNav">
   <a href="#om-oss" onclick="closeMob()">Om KBK</a>
   <a href="#styrelsen" onclick="closeMob()">Styrelsen</a>
-  <a href="#arsmoten" onclick="closeMob()">Årsmöten</a>
+  <a href="#arsmoten" onclick="closeMob()">Årsmöten & Protokoll</a>
+  <a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank" onclick="closeMob()">Stadgar (PDF) ↗</a>
   <a href="#kalender" onclick="closeMob()">Kalender</a>
   <a href="#nyheter" onclick="closeMob()">Nyheter</a>
   <a href="#aktiviteter" onclick="closeMob()">Aktiviteter</a>
