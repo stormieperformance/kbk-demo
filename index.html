@@ -441,18 +441,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Treeline SVG silhouette -->
-  <svg class="hero-svg" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,280 L0,180 L30,160 L60,120 L90,140 L120,80 L150,100 L160,60 L175,80 L190,40 L205,70 L220,30 L235,55 L250,20 L265,50 L280,35 L300,90 L320,70 L340,110 L360,80 L380,120 L400,100 L420,140 L440,115 L470,85 L500,130 L520,90 L540,110 L570,70 L600,95 L630,60 L650,85 L670,50 L690,75 L710,40 L730,65 L750,30 L770,55 L790,25 L810,60 L830,45 L850,80 L870,55 L900,100 L930,70 L960,110 L990,85 L1020,120 L1050,95 L1080,130 L1110,105 L1140,145 L1170,120 L1200,155 L1230,130 L1260,160 L1290,140 L1320,170 L1350,150 L1380,175 L1410,160 L1440,180 L1440,280 Z" fill="rgba(0,0,0,0.25)"/>
-    <path d="M0,280 L0,200 L40,185 L80,160 L110,175 L140,140 L170,155 L200,125 L220,140 L240,110 L260,130 L285,100 L310,120 L340,145 L370,125 L400,150 L430,135 L460,160 L490,140 L520,165 L560,145 L600,170 L640,150 L680,175 L720,155 L760,180 L800,160 L840,185 L880,165 L920,185 L960,170 L1000,190 L1050,175 L1100,195 L1150,180 L1200,200 L1260,185 L1320,200 L1380,190 L1440,205 L1440,280 Z" fill="rgba(0,0,0,0.35)"/>
-    <!-- Archer silhouette -->
-    <g transform="translate(1240,100)" fill="rgba(255,255,255,0.06)">
-      <circle cx="12" cy="8" r="8"/>
-      <path d="M12,16 L8,50 L16,50 M8,30 L-10,22 M8,30 L26,26"/>
-      <path d="M-12,20 Q-20,18 -28,14 M-28,14 L-28,24 M-12,20 L-12,24"/>
-    </g>
-  </svg>
-  <div class="hero-content">
+  <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.45" src="kbkhero.mp4"></video>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(30,50,32,0.5) 0%, rgba(20,35,22,0.88) 100%);z-index:1"></div>
+  <div class="hero-content" style="position:relative;z-index:2">
     <span class="hero-eyebrow">Kungsängens Bågskytteklubb</span>
     <div class="hero-since">Grundad 18 juli 1962</div>
     <h1>Bågskytte<br><em>i hjärtat av</em><br>Upplands-Bro</h1>
@@ -622,6 +613,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
           <li>Gillar du det? Anmäl dig till Bågskytteskolan hösten 2026</li>
         </ul>
         <p class="alt-link">Vill du hellre mejla? <a href="mailto:provapa@kbkbagskytte.se">provapa@kbkbagskytte.se</a><br>Ange vilket datum och vilken omgång du vill delta i.</p>
+        <a href="#bookCard" onclick="document.getElementById('bookCard').scrollIntoView({behavior:'smooth',block:'start'})" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex;font-size:1rem;padding:.85rem 2rem">Välj datum och boka →</a>
       </div>
 
       <div class="book-card rv" id="bookCard">
@@ -1449,13 +1441,13 @@ async function doBook() {
       ok.style.display = 'block';
       document.getElementById('okDetails').textContent =
         picked.date + ' · ' + picked.session + ' · ' + numPeople + ' person' + (numPeople > 1 ? 'er' : '');
-      // Send confirmation email
-      await sendConfirmation('booking', {
+      ok.scrollIntoView({behavior:'smooth', block:'center'});
+      // Send confirmation email and reload counts silently in background
+      sendConfirmation('booking', {
         email, name: firstName + ' ' + lastName,
         date: picked.date, time_slot: picked.session, participants: numPeople
       });
-      // Reload counts so badge updates immediately
-      await loadSlotCounts();
+      loadSlotCounts();
     } else {
       const err = await res.json();
       console.error(err);
