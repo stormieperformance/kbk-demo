@@ -65,11 +65,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--forest);hei
 .nav-cta:hover{background:var(--gold-lt)!important}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
 .hamburger span{width:22px;height:2px;background:#fff;border-radius:1px;display:block}
-.mob-nav{display:none;position:fixed;top:60px;left:0;right:0;z-index:9999;background:var(--forest);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0;max-height:calc(100vh - 60px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.mob-nav.open{display:flex}
-.mob-nav a{color:rgba(255,255,255,.8);font-size:15px;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);text-decoration:none}
-.mob-nav a:last-child{border-bottom:none}
-.mob-cta{background:var(--gold);color:#fff!important;border-radius:4px;text-align:center;padding:.75rem!important;margin-top:.5rem;font-weight:700;border-bottom:none!important}
+#mobNav{display:none;position:fixed;top:60px;left:0;right:0;z-index:9999;background:var(--forest);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:0;max-height:calc(100vh - 60px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+#mobNav.open{display:flex!important}
+#mobNav a{color:rgba(255,255,255,.8)!important;font-size:15px!important;padding:.6rem 0!important;border-bottom:1px solid rgba(255,255,255,.07)!important;text-decoration:none!important;display:block!important;background:none!important;border-radius:0!important;width:100%!important}
+#mobNav a:last-child{border-bottom:none!important}
+#mobNav .mob-cta{background:var(--gold)!important;color:#fff!important;border-radius:4px!important;text-align:center!important;padding:.75rem!important;margin-top:.5rem!important;font-weight:700!important;border-bottom:none!important}
 @media(max-width:920px){.nav-links{display:none}.hamburger{display:flex}}
 
 /* ── HERO ── */
@@ -380,7 +380,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
   </button>
 </nav>
 
-<nav class="mob-nav" id="mobNav">
+<div id="mobNav">
   <a href="#om-oss" onclick="closeMob()">Om KBK</a>
   <a href="#styrelsen" onclick="closeMob()">Styrelsen</a>
   <a href="#arsmoten" onclick="closeMob()">Årsmöten & Protokoll</a>
@@ -395,7 +395,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
   <a href="#trojor" onclick="closeMob()">Klubbtröjor</a>
   <a href="#hitta-hit" onclick="closeMob()">Hitta hit</a>
   <a href="#prova-pa" class="mob-cta" onclick="closeMob()">Boka provskjutning →</a>
-</nav>
+</div>
 
 <!-- HERO -->
 <section class="hero">
