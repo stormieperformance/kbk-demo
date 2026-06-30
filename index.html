@@ -1449,6 +1449,11 @@ async function doBook() {
       ok.style.display = 'block';
       document.getElementById('okDetails').textContent =
         picked.date + ' · ' + picked.session + ' · ' + numPeople + ' person' + (numPeople > 1 ? 'er' : '');
+      // Send confirmation email
+      await sendConfirmation('booking', {
+        email, name: firstName + ' ' + lastName,
+        date: picked.date, time_slot: picked.session, participants: numPeople
+      });
       // Reload counts so badge updates immediately
       await loadSlotCounts();
     } else {
@@ -1477,6 +1482,22 @@ const obs = new IntersectionObserver(es => {
 }, {threshold: 0.07});
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 
+
+// ── EMAIL CONFIRMATION ──
+async function sendConfirmation(type, record) {
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/send-confirmation`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ type, record })
+    });
+  } catch(e) {
+    console.warn('Email send failed (non-critical):', e);
+  }
+}
 
 // ── BÅGSKYTTESKOLAN FORM ──
 async function submitSchool() {
@@ -1510,6 +1531,11 @@ async function submitSchool() {
       const ok = document.getElementById('skolaOk');
       ok.style.display = 'block';
       document.getElementById('skolaOkDetails').textContent = `${first} ${last} — ${course}`;
+      // Send confirmation email
+      await sendConfirmation('school', {
+        email, parent_name: first + ' ' + last,
+        child_name: first, child_age: age, phone, course
+      });
     } else {
       btn.textContent = 'Skicka anmälan →'; btn.disabled = false;
       alert('Något gick fel. Mejla skola@kbkbagskytte.se direkt.');
@@ -1551,6 +1577,11 @@ async function submitJersey() {
     if (res.ok) {
       document.getElementById('jerseyFormInner').style.display = 'none';
       document.getElementById('jerseyOk').style.display = 'block';
+      // Send confirmation email
+      await sendConfirmation('jersey', {
+        email, name: first + ' ' + last, phone,
+        items: JSON.stringify([{ model, size, qty }])
+      });
     } else {
       btn.textContent = 'Skicka beställning →'; btn.disabled = false;
       alert('Något gick fel. Mejla info@kbkbagskytte.se direkt.');
