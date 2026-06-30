@@ -592,46 +592,46 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
           </div>
 
           <div class="date-hdr">30 juni</div>
-          <button class="slot-btn" onclick="pickSlot(this,'30 jun','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">3 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'30 jun','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">8 platser kvar</span></button>
+          <button class="slot-btn" data-date="30 jun" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'30 jun','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="30 jun" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'30 jun','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
           <div class="date-hdr">7 juli</div>
-          <button class="slot-btn" onclick="pickSlot(this,'7 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-low">6 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'7 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">9 platser kvar</span></button>
+          <button class="slot-btn" data-date="7 jul" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'7 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="7 jul" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'7 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
-          <div class="date-hdr">14 juli — Fullbokad</div>
-          <button class="slot-btn" disabled><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-full">Fullbokad</span></button>
-          <button class="slot-btn" disabled><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-full">Fullbokad</span></button>
+          <div class="date-hdr">14 juli</div>
+          <button class="slot-btn" data-date="14 jul" data-session="Omg 1: 18:00–19:00" data-force="full" disabled><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-full">Fullbokad</span></button>
+          <button class="slot-btn" data-date="14 jul" data-session="Omg 2: 19:00–20:00" data-force="full" disabled><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-full">Fullbokad</span></button>
 
           <div class="date-hdr">21 juli</div>
-          <button class="slot-btn" onclick="pickSlot(this,'21 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'21 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" data-date="21 jul" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'21 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="21 jul" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'21 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
           <div class="date-hdr">28 juli</div>
-          <button class="slot-btn" onclick="pickSlot(this,'28 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'28 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" data-date="28 jul" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'28 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="28 jul" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'28 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
           <div class="date-hdr">4 augusti</div>
-          <button class="slot-btn" onclick="pickSlot(this,'4 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'4 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" data-date="4 aug" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'4 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="4 aug" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'4 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
           <div class="date-hdr">11 augusti</div>
-          <button class="slot-btn" onclick="pickSlot(this,'11 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'11 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" data-date="11 aug" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'11 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="11 aug" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'11 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
 
           <div class="date-hdr">18 augusti</div>
-          <button class="slot-btn" onclick="pickSlot(this,'18 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
-          <button class="slot-btn" onclick="pickSlot(this,'18 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" data-date="18 aug" data-session="Omg 1: 18:00–19:00" onclick="pickSlot(this,'18 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">Laddar...</span></button>
+          <button class="slot-btn" data-date="18 aug" data-session="Omg 2: 19:00–20:00" onclick="pickSlot(this,'18 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">Laddar...</span></button>
         </div>
 
         <div id="bookForm" style="display:none">
           <div class="sel-confirm" id="selDisplay"></div>
           <div class="form-row2">
-            <div class="fg"><label>Förnamn</label><input type="text" placeholder="Anna"></div>
-            <div class="fg"><label>Efternamn</label><input type="text" placeholder="Lindqvist"></div>
+            <div class="fg"><label>Förnamn</label><input id="bFirstName" type="text" placeholder="Anna"></div>
+            <div class="fg"><label>Efternamn</label><input id="bLastName" type="text" placeholder="Lindqvist"></div>
           </div>
-          <div class="fg"><label>E-post</label><input type="email" placeholder="anna@example.com"></div>
-          <div class="fg"><label>Telefon</label><input type="tel" placeholder="070 123 45 67"></div>
+          <div class="fg"><label>E-post</label><input id="bEmail" type="email" placeholder="anna@example.com"></div>
+          <div class="fg"><label>Telefon</label><input id="bPhone" type="tel" placeholder="070 123 45 67"></div>
           <div class="fg">
             <label>Antal personer</label>
             <select id="pCount" onchange="updCost()">
@@ -640,7 +640,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
             </select>
           </div>
           <div class="cost-pill">Kostnad: <strong id="cDisp">50 kr</strong> — betalas på plats</div>
-          <button class="submit-btn btn" onclick="doBook()">Bekräfta bokning</button>
+          <div style="display:flex;gap:.65rem;align-items:flex-start;margin-bottom:1rem;padding:.75rem;background:var(--stone);border-radius:3px">
+            <input type="checkbox" id="bConsent" style="margin-top:.2rem;flex-shrink:0;width:16px;height:16px;accent-color:var(--forest)">
+            <label for="bConsent" style="font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer">Jag godkänner att Kungsängens Bågskytteklubb sparar mina uppgifter (namn, e-post, telefon) för att hantera min bokning. Uppgifterna används enbart för detta ändamål och raderas efter säsongen.</label>
+          </div>
+          <button class="submit-btn btn" id="submitBtn" onclick="doBook()">Bekräfta bokning</button>
           <p class="small-note">Ingen förskottsbetalning. 50 kr/person betalas på plats.</p>
         </div>
 
@@ -1161,27 +1165,170 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
 </footer>
 
 <script>
+// ── SUPABASE CONFIG ──
+const SUPABASE_URL = 'https://cdvmaicafibfzsfdwyus.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Gx7pJJINP4UGhD7UOn40wQ_IBnBOeY5';
+
+// Slot definitions — max 20 each
+const SLOTS = [
+  {date:'30 jun', session:'Omg 1: 18:00–19:00'},
+  {date:'30 jun', session:'Omg 2: 19:00–20:00'},
+  {date:'7 jul',  session:'Omg 1: 18:00–19:00'},
+  {date:'7 jul',  session:'Omg 2: 19:00–20:00'},
+  {date:'14 jul', session:'Omg 1: 18:00–19:00', forceFulla:true},
+  {date:'14 jul', session:'Omg 2: 19:00–20:00', forceFulla:true},
+  {date:'21 jul', session:'Omg 1: 18:00–19:00'},
+  {date:'21 jul', session:'Omg 2: 19:00–20:00'},
+  {date:'28 jul', session:'Omg 1: 18:00–19:00'},
+  {date:'28 jul', session:'Omg 2: 19:00–20:00'},
+  {date:'4 aug',  session:'Omg 1: 18:00–19:00'},
+  {date:'4 aug',  session:'Omg 2: 19:00–20:00'},
+  {date:'11 aug', session:'Omg 1: 18:00–19:00'},
+  {date:'11 aug', session:'Omg 2: 19:00–20:00'},
+  {date:'18 aug', session:'Omg 1: 18:00–19:00'},
+  {date:'18 aug', session:'Omg 2: 19:00–20:00'},
+];
+const MAX_PER_SLOT = 20;
+
+// ── FETCH LIVE SLOT COUNTS ──
+async function loadSlotCounts() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_slot_counts`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    });
+    const counts = await res.json();
+    // Build lookup: "date|session" -> booked count
+    const lookup = {};
+    if (Array.isArray(counts)) {
+      counts.forEach(r => { lookup[`${r.date}|${r.session}`] = parseInt(r.booked); });
+    }
+    // Update each slot button
+    document.querySelectorAll('.slot-btn[data-date]').forEach(btn => {
+      const key = `${btn.dataset.date}|${btn.dataset.session}`;
+      const booked = lookup[key] || 0;
+      const available = MAX_PER_SLOT - booked;
+      const badge = btn.querySelector('.badge');
+      if (btn.dataset.force === 'full' || available <= 0) {
+        badge.textContent = 'Fullbokad';
+        badge.className = 'badge b-full';
+        btn.disabled = true;
+        btn.classList.add('full');
+      } else if (available <= 5) {
+        badge.textContent = `${available} platser kvar`;
+        badge.className = 'badge b-low';
+      } else {
+        badge.textContent = `${available} platser kvar`;
+        badge.className = 'badge b-open';
+      }
+    });
+  } catch(e) {
+    console.warn('Could not load slot counts:', e);
+  }
+}
+
+// ── BOOKING FORM ──
+let picked = null;
+
+function pickSlot(btn, date, session) {
+  document.querySelectorAll('.slot-btn.picked').forEach(b => b.classList.remove('picked'));
+  btn.classList.add('picked');
+  picked = {date, session};
+  const f = document.getElementById('bookForm');
+  document.getElementById('selDisplay').textContent = '✓ Valt: ' + date + ' · ' + session;
+  f.style.display = 'block';
+  f.scrollIntoView({behavior:'smooth', block:'nearest'});
+  updCost();
+}
+
+function updCost() {
+  const n = parseInt(document.getElementById('pCount').value);
+  document.getElementById('cDisp').textContent = (n * 50) + ' kr';
+}
+
+async function doBook() {
+  if (!picked) return;
+  const firstName = document.getElementById('bFirstName').value.trim();
+  const lastName  = document.getElementById('bLastName').value.trim();
+  const email     = document.getElementById('bEmail').value.trim();
+  const phone     = document.getElementById('bPhone').value.trim();
+  const numPeople = parseInt(document.getElementById('pCount').value);
+  const consent   = document.getElementById('bConsent').checked;
+
+  if (!firstName || !lastName || !email || !phone) {
+    alert('Vänligen fyll i alla fält.'); return;
+  }
+  if (!consent) {
+    alert('Du måste godkänna att vi sparar dina uppgifter för att genomföra bokningen.'); return;
+  }
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.textContent = 'Bokar...';
+  submitBtn.disabled = true;
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        date: picked.date,
+        session: picked.session,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone,
+        num_people: numPeople,
+        consent: consent
+      })
+    });
+
+    if (res.ok) {
+      document.getElementById('bookCard').querySelector('h3').style.display = 'none';
+      document.getElementById('slotList').style.display = 'none';
+      document.getElementById('bookForm').style.display = 'none';
+      const ok = document.getElementById('bookOk');
+      ok.style.display = 'block';
+      document.getElementById('okDetails').textContent =
+        picked.date + ' · ' + picked.session + ' · ' + numPeople + ' person' + (numPeople > 1 ? 'er' : '');
+      // Reload counts so badge updates immediately
+      await loadSlotCounts();
+    } else {
+      const err = await res.json();
+      console.error(err);
+      alert('Något gick fel. Försök igen eller mejla provapa@kbkbagskytte.se');
+      submitBtn.textContent = 'Bekräfta bokning';
+      submitBtn.disabled = false;
+    }
+  } catch(e) {
+    console.error(e);
+    alert('Något gick fel. Kontrollera din internetanslutning och försök igen.');
+    submitBtn.textContent = 'Bekräfta bokning';
+    submitBtn.disabled = false;
+  }
+}
+
+// ── MOBILE NAV ──
 function toggleMenu(){document.getElementById('mobNav').classList.toggle('open')}
 function closeMob(){document.getElementById('mobNav').classList.remove('open')}
-let picked=null;
-function pickSlot(btn,date,time){
-  document.querySelectorAll('.slot-btn.picked').forEach(b=>b.classList.remove('picked'));
-  btn.classList.add('picked');picked={date,time};
-  const f=document.getElementById('bookForm');
-  document.getElementById('selDisplay').textContent='✓ Valt: '+date+' · '+time;
-  f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'nearest'});updCost();
-}
-function updCost(){const n=parseInt(document.getElementById('pCount').value);document.getElementById('cDisp').textContent=(n*50)+' kr';}
-function doBook(){
-  if(!picked)return;const n=parseInt(document.getElementById('pCount').value);
-  document.getElementById('bookCard').querySelector('h3').style.display='none';
-  document.getElementById('slotList').style.display='none';
-  document.getElementById('bookForm').style.display='none';
-  const ok=document.getElementById('bookOk');ok.style.display='block';
-  document.getElementById('okDetails').textContent=picked.date+' · '+picked.time+' · '+n+' person'+(n>1?'er':'');
-}
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.07});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }});
+}, {threshold: 0.07});
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// ── INIT ──
+loadSlotCounts();
 </script>
 </body>
 </html>
