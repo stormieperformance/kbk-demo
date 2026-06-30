@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kungsängens Bågskytteklubb — Sedan 1962</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1B2E1F;
+  --forest:#1B3828;
+  --forest-mid:#254D38;
+  --moss:#3A6B4F;
+  --stone:#E8E3D8;
+  --page:#F7F5F1;
+  --white:#FFFFFF;
+  --gold:#8B6914;
+  --gold-lt:#B08C3A;
+  --rule:#C8C2B4;
+  --muted:#6B6558;
+  --light:#9A9288;
+  --danger:#9B2020;
+  --ok:#1A5C33;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;background:var(--page);color:var(--ink);font-size:16px;line-height:1.65}
+
+/* ── TYPOGRAPHY ── */
+h1,h2,h3,h4{font-family:'Libre Baskerville',serif;line-height:1.15;color:var(--ink)}
+h1{font-size:clamp(2.6rem,6vw,5rem);letter-spacing:-.5px}
+h2{font-size:clamp(1.7rem,3.5vw,2.4rem)}
+h3{font-size:1.3rem}
+h4{font-size:1.05rem}
+p{color:var(--muted);line-height:1.75}
+a{color:var(--forest);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1060px;margin:0 auto;padding:0 2rem}
+section{padding:4.5rem 2rem}
+.sec-label{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem;display:block}
+.rule{width:40px;height:2px;background:var(--gold);margin:1.1rem 0 1.75rem}
+.bg-stone{background:var(--stone)}
+.bg-forest{background:var(--forest)}
+.bg-ink{background:var(--ink)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--forest);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-brand{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.nav-logo-img{height:38px;width:38px;object-fit:contain;border-radius:50%}
+.nav-logo-fallback{height:38px;width:38px;border:1.5px solid var(--gold-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',serif;font-size:11px;font-weight:700;color:var(--gold-lt);letter-spacing:.5px;flex-shrink:0}
+.nav-brand-text{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700;color:#fff;line-height:1.2}
+.nav-brand-text small{display:block;font-family:'Source Sans 3',sans-serif;font-weight:400;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:1.5px;text-transform:uppercase;font-style:normal}
+.nav-links{display:flex;align-items:center;gap:.1rem}
+.nav-links a,.nav-drop>a{font-size:13px;font-weight:500;color:rgba(255,255,255,.72);padding:.38rem .7rem;border-radius:3px;white-space:nowrap;transition:color .15s,background .15s}
+.nav-links a:hover,.nav-drop>a:hover{color:#fff;background:rgba(255,255,255,.08);text-decoration:none}
+.nav-drop{position:relative}
+.nav-drop .sub{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--forest-mid);border:1px solid rgba(255,255,255,.1);border-radius:5px;min-width:195px;padding:.35rem 0;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:600}
+.nav-drop:hover .sub{display:block}
+.sub a{display:block;padding:.45rem 1rem;font-size:13px;color:rgba(255,255,255,.75);border-radius:0}
+.sub a:hover{background:rgba(255,255,255,.08);color:#fff;text-decoration:none}
+.nav-cta{background:var(--gold)!important;color:#fff!important;font-weight:700!important;padding:.4rem 1rem!important;border-radius:3px;margin-left:.5rem}
+.nav-cta:hover{background:var(--gold-lt)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:1px;display:block}
+.mob-nav{display:none;position:fixed;top:60px;left:0;right:0;z-index:490;background:var(--forest);padding:1rem 1.5rem 1.5rem;flex-direction:column;gap:.15rem;max-height:calc(100vh - 60px);overflow-y:auto}
+.mob-nav.open{display:flex}
+.mob-nav a{color:rgba(255,255,255,.8);font-size:15px;padding:.6rem 0;border-bottom:1px solid rgba(255,255,255,.07);text-decoration:none}
+.mob-nav a:last-child{border-bottom:none}
+.mob-cta{background:var(--gold);color:#fff!important;border-radius:4px;text-align:center;padding:.75rem!important;margin-top:.5rem;font-weight:700;border-bottom:none!important}
+@media(max-width:920px){.nav-links{display:none}.hamburger{display:flex}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:var(--forest);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2rem 5rem;position:relative;overflow:hidden}
+.hero-svg{position:absolute;bottom:0;left:0;right:0;pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-eyebrow{font-family:'Source Sans 3',sans-serif;font-size:11px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:1.5rem;display:block}
+.hero h1{color:#fff;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.95;letter-spacing:-.5px;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:rgba(255,255,255,.5)}
+.hero-since{display:inline-block;border:1px solid rgba(255,255,255,.2);padding:.3rem 1rem;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-family:'Source Sans 3',sans-serif}
+.hero-lead{font-size:1.1rem;color:rgba(255,255,255,.6);max-width:480px;line-height:1.7;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.75rem;border-radius:3px;font-size:14px;font-weight:700;font-family:'Source Sans 3',sans-serif;letter-spacing:.3px;transition:all .15s;text-decoration:none;border:none;cursor:pointer}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:var(--gold-lt);text-decoration:none;color:#fff}
+.btn-outline{border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8)}
+.btn-outline:hover{border-color:#fff;color:#fff;text-decoration:none}
+.btn-forest{background:var(--forest);color:#fff}
+.btn-forest:hover{background:var(--forest-mid);text-decoration:none;color:#fff}
+.btn-sm{padding:.55rem 1.1rem;font-size:13px}
+
+/* ── OPENING STRIP ── */
+.strip{background:var(--forest-mid);padding:1.1rem 2rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.strip-inner{max-width:1060px;margin:0 auto;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.strip-lbl{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-lt);flex-shrink:0}
+.strip-items{display:flex;gap:2.5rem;flex-wrap:wrap;flex:1}
+.strip-item strong{display:block;font-size:13px;font-weight:600;color:#fff}
+.strip-item span{font-size:12px;color:rgba(255,255,255,.5)}
+.strip-note{font-size:11px;color:rgba(255,255,255,.35);margin-left:auto}
+.strip-note a{color:var(--gold-lt)}
+
+/* ── NEWS ── */
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.25rem;margin-top:2.5rem}
+.news-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s}
+.news-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.news-card-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.news-meta{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin-bottom:.6rem}
+.news-card h3{font-size:1.1rem;margin-bottom:.6rem;color:var(--ink)}
+.news-card p{font-size:14px;line-height:1.65;color:var(--muted);flex:1}
+.news-link{display:inline-block;margin-top:1.1rem;font-size:13px;font-weight:600;color:var(--forest);text-decoration:none;border-bottom:1.5px solid var(--gold);padding-bottom:1px}
+.news-link:hover{color:var(--moss);text-decoration:none}
+
+/* ── OM OSS ── */
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center}
+.about-img{aspect-ratio:4/3;background:linear-gradient(160deg,var(--forest) 0%,var(--forest-mid) 100%);border-radius:3px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-img-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);z-index:1}
+.about-img-archer{position:absolute;bottom:0;right:0;opacity:.07;font-size:12rem;line-height:1}
+.stat-row{display:flex;gap:2.5rem;margin-top:2.25rem;padding-top:1.5rem;border-top:1px solid var(--rule)}
+.stat-num{font-family:'Libre Baskerville',serif;font-size:2.2rem;font-weight:700;color:var(--forest);line-height:1}
+.stat-lbl{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--light);margin-top:.2rem}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr}}
+
+/* ── ACTIVITIES ── */
+.act-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.1rem;margin-top:2.25rem}
+.act-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.6rem;transition:box-shadow .2s,transform .15s}
+.act-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
+.act-icon{width:40px;height:40px;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;margin-bottom:1rem;flex-shrink:0}
+.act-card h3{font-size:1.1rem;margin-bottom:.4rem}
+.act-card p{font-size:13.5px;line-height:1.6;margin-bottom:.65rem}
+.act-detail{font-size:12.5px;color:var(--moss);font-weight:600;margin-bottom:.9rem}
+.act-link{font-size:13px;font-weight:600;color:var(--forest);border-bottom:1.5px solid var(--gold);padding-bottom:1px}
+.act-link:hover{color:var(--moss);text-decoration:none}
+
+/* ── BOOKING ── */
+.book-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:4rem;align-items:start}
+.book-info h2{color:#fff}
+.book-info p{color:rgba(255,255,255,.6)}
+.book-info .rule{background:var(--gold-lt)}
+.book-info ul{list-style:none;margin-top:1.25rem}
+.book-info ul li{font-size:14px;color:rgba(255,255,255,.7);padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.07);display:flex;gap:.65rem;align-items:flex-start}
+.book-info ul li::before{content:'→';color:var(--gold-lt);font-weight:700;flex-shrink:0;margin-top:.05rem}
+.book-info .alt-link{margin-top:1.5rem;font-size:13px;color:rgba(255,255,255,.35)}
+.book-info .alt-link a{color:var(--gold-lt)}
+.book-card{background:var(--white);border-radius:5px;padding:2rem;box-shadow:0 16px 48px rgba(0,0,0,.25)}
+.book-card h3{font-size:1.2rem;margin-bottom:1.25rem}
+.date-hdr{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin:.85rem 0 .4rem}
+.date-hdr:first-child{margin-top:0}
+.slot-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:.6rem .85rem;border:1.5px solid var(--rule);border-radius:4px;background:var(--white);cursor:pointer;margin-bottom:.3rem;font-family:'Source Sans 3',sans-serif;transition:border-color .12s,background .12s}
+.slot-btn:hover:not([disabled]){border-color:var(--moss);background:#f0f6f2}
+.slot-btn.picked{border-color:var(--forest);background:#eaf2ec}
+.slot-btn[disabled]{opacity:.5;cursor:not-allowed}
+.slot-time{font-size:13.5px;font-weight:600;color:var(--ink)}
+.badge{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:10px}
+.b-open{background:#e6f3ea;color:var(--ok)}
+.b-low{background:#fdf3e0;color:#7A5200}
+.b-full{background:#fce8e8;color:var(--danger)}
+.fg{margin-bottom:.6rem}
+.fg label{display:block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:.28rem}
+.fg input,.fg select{width:100%;padding:.58rem .8rem;border:1.5px solid var(--rule);border-radius:3px;font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--ink);background:var(--white);outline:none;transition:border-color .12s}
+.fg input:focus,.fg select:focus{border-color:var(--forest)}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:.6rem}
+.cost-pill{background:var(--stone);border-radius:3px;padding:.6rem .85rem;font-size:13px;color:var(--muted);margin-bottom:1rem}
+.cost-pill strong{color:var(--ink)}
+.sel-confirm{background:var(--forest);color:#fff;border-radius:3px;padding:.5rem .85rem;font-size:13.5px;font-weight:600;margin-bottom:1rem}
+.submit-btn{width:100%;padding:.82rem;background:var(--forest);color:#fff;border:none;border-radius:4px;font-family:'Source Sans 3',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s;letter-spacing:.2px}
+.submit-btn:hover{background:var(--forest-mid)}
+.small-note{font-size:11.5px;color:var(--light);text-align:center;margin-top:.55rem}
+.ok-state{display:none;text-align:center;padding:1.5rem .5rem}
+.ok-state .ok-icon{font-size:2.5rem;margin-bottom:.75rem}
+.ok-state h4{font-family:'Libre Baskerville',serif;font-size:1.4rem;margin-bottom:.4rem}
+.ok-state p{font-size:14px;color:var(--muted)}
+@media(max-width:780px){.book-wrap{grid-template-columns:1fr}}
+
+/* ── SCHOOL ── */
+.school-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.course-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.4rem}
+.course-tag{display:inline-block;background:var(--forest);color:var(--gold-lt);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-bottom:.65rem}
+.course-card h4{font-size:1.05rem;margin-bottom:.35rem}
+.course-card p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ── SM TÄVLINGAR ── */
+.sm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;margin-top:2rem}
+.sm-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.4rem}
+.sm-card h4{font-size:1.05rem;margin-bottom:.75rem;padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.sm-row{display:flex;font-size:13px;margin-bottom:.28rem;gap:.5rem}
+.sm-row strong{color:var(--ink);min-width:85px;font-weight:600;flex-shrink:0}
+.sm-row span{color:var(--muted)}
+.sm-row.deadline strong{color:var(--danger)}
+.sm-row.deadline span{color:var(--danger);font-weight:600}
+.sm-card a.inv-link{display:inline-block;margin-top:.85rem;font-size:12.5px;font-weight:600;color:var(--forest);border-bottom:1.5px solid var(--gold);padding-bottom:1px}
+.sm-note{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.4rem;margin-top:1.5rem;font-size:14px;line-height:1.7}
+.sm-note strong{color:var(--ink)}
+.sm-btns{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1.1rem}
+
+/* ── PARA ── */
+.para-inner{background:var(--forest-mid);border-radius:4px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.para-inner h2{color:#fff}
+.para-inner .rule{background:var(--gold-lt)}
+.para-inner p{color:rgba(255,255,255,.65);font-size:15px;line-height:1.75;margin-bottom:.85rem}
+.para-inner a{color:var(--gold-lt)}
+.para-items{display:flex;flex-direction:column;gap:.85rem}
+.para-item{background:rgba(0,0,0,.18);border-radius:3px;padding:.9rem 1.1rem}
+.para-item strong{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.2rem}
+.para-item span{font-size:14px;color:rgba(255,255,255,.75)}
+.para-item a{color:var(--gold-lt)}
+@media(max-width:700px){.para-inner{grid-template-columns:1fr}}
+
+/* ── MEMBERSHIP ── */
+.mem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.mem-card{border:1.5px solid var(--rule);border-radius:4px;padding:1.75rem;background:var(--white)}
+.mem-card.feat{background:var(--forest);border-color:var(--forest)}
+.mem-card h3{font-size:1.15rem;margin-bottom:.35rem;color:var(--ink)}
+.mem-card.feat h3{color:#fff}
+.mem-price{font-family:'Libre Baskerville',serif;font-size:2.1rem;font-weight:700;color:var(--forest);line-height:1;margin:.6rem 0}
+.mem-card.feat .mem-price{color:var(--gold-lt)}
+.mem-price small{font-size:13px;font-weight:400;color:var(--light);font-family:'Source Sans 3',sans-serif}
+.mem-card.feat .mem-price small{color:rgba(255,255,255,.4)}
+.mem-list{list-style:none;margin-top:.75rem}
+.mem-list li{font-size:13.5px;color:var(--muted);padding:.3rem 0;display:flex;gap:.55rem;border-bottom:1px solid var(--rule)}
+.mem-list li:last-child{border-bottom:none}
+.mem-card.feat .mem-list li{color:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.08)}
+.mem-list li::before{content:'✓';color:var(--moss);font-weight:700;flex-shrink:0}
+.mem-card.feat .mem-list li::before{color:var(--gold-lt)}
+.fam-row{display:inline-flex;align-items:center;gap:1rem;background:var(--stone);border-radius:3px;padding:.85rem 1.25rem;margin-top:1rem;font-size:14px}
+.fam-row strong{color:var(--ink)}
+@media(max-width:580px){.mem-grid{grid-template-columns:1fr}}
+
+/* ── TABLES ── */
+.tbl-wrap{margin-top:1.5rem;overflow-x:auto}
+.tbl-wrap h3{font-size:1.1rem;margin-bottom:.85rem}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--forest);color:#fff;padding:.65rem 1rem;text-align:left;font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+td{padding:.6rem 1rem;border-bottom:1px solid var(--rule);color:var(--muted)}
+tr:nth-child(even) td{background:var(--stone)}
+tr:last-child td{border-bottom:none}
+
+/* ── PAYMENT BOX ── */
+.pay-box{margin-top:2rem;background:var(--stone);border-radius:4px;padding:1.4rem 1.6rem}
+.pay-box h4{font-family:'Libre Baskerville',serif;font-size:1rem;margin-bottom:.85rem;color:var(--ink)}
+.pay-row{display:flex;gap:2.5rem;flex-wrap:wrap}
+.pay-item strong{display:block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--light);margin-bottom:.15rem}
+.pay-item span{font-size:15px;font-weight:600;color:var(--ink)}
+.pay-item .note{font-size:12px;color:var(--light);font-weight:400}
+
+/* ── INFO BOXES ── */
+.info-box{background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:3px;padding:1.25rem 1.4rem;margin-top:1.25rem}
+.info-box strong{font-size:14px;color:var(--ink);display:block;margin-bottom:.35rem}
+.info-box p{font-size:13.5px;color:var(--muted);line-height:1.65;margin:0}
+.info-box a{color:var(--forest);font-weight:600}
+.warn-box{border-left-color:var(--danger)}
+
+/* ── MEMBERSHIP STEPS ── */
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem}
+.step{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.4rem 1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.step-num{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--rule);line-height:1;flex-shrink:0}
+.step h4{font-size:1rem;margin-bottom:.3rem}
+.step p{font-size:13.5px;color:var(--muted);line-height:1.6}
+.step a{color:var(--forest);font-weight:600}
+@media(max-width:580px){.steps{grid-template-columns:1fr}}
+
+/* ── KALENDER ── */
+.cal-frame{margin-top:2rem;border-radius:4px;overflow:hidden;border:1px solid var(--rule);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.cal-frame iframe{width:100%;height:600px;border:none;display:block}
+
+/* ── JERSEY ── */
+.jersey-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:2rem;display:flex;align-items:flex-start;gap:1.75rem;margin-top:2rem;flex-wrap:wrap}
+.jersey-icon{font-size:3rem;flex-shrink:0}
+.jersey-info h3{font-size:1.2rem;margin-bottom:.4rem}
+.jersey-info p{font-size:14px;color:var(--muted);line-height:1.65;max-width:500px}
+.jersey-btns{display:flex;gap:.85rem;margin-top:1.1rem;flex-wrap:wrap}
+
+/* ── FÖR MEDLEMMAR ── */
+.member-cols{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.5rem;margin-top:2rem}
+.member-col{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.4rem}
+.member-col h4{font-size:1rem;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.yr-hdr{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--light);margin:.85rem 0 .4rem;display:block}
+.yr-hdr:first-of-type{margin-top:0}
+.doc-list{list-style:none}
+.doc-list li{font-size:13px;margin-bottom:.28rem}
+.doc-list li a{color:var(--forest);font-weight:500}
+.doc-list li a:hover{color:var(--moss)}
+.doc-list.inline{display:flex;flex-wrap:wrap;gap:.35rem .5rem}
+.doc-list.inline li a{font-size:13px}
+@media(max-width:750px){.member-cols{grid-template-columns:1fr}}
+
+/* ── STYRELSEN ── */
+.board-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin-top:2rem}
+.board-card{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.25rem;text-align:center}
+.board-av{width:52px;height:52px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin:0 auto .75rem}
+.board-role{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--moss);margin-bottom:.2rem}
+.board-name{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:.2rem}
+.board-email{font-size:12px;color:var(--forest);text-decoration:none}
+.board-email:hover{text-decoration:underline}
+.board-none{font-size:12px;color:var(--light)}
+
+/* ── ÅRSMOETE ── */
+.amote-docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
+.amote-block h4{font-size:1rem;margin-bottom:.65rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule)}
+.proto-links{display:flex;flex-wrap:wrap;gap:.35rem .5rem}
+.proto-link{font-size:13px;color:var(--forest);font-weight:500;border:1px solid var(--rule);border-radius:3px;padding:.25rem .6rem;transition:background .12s}
+.proto-link:hover{background:var(--stone);text-decoration:none}
+
+/* ── KLUBBINFO ── */
+.clubinfo-table{width:100%;max-width:520px;margin-top:1.25rem}
+.clubinfo-table td{padding:.5rem 0;font-size:14.5px;border:none;background:none}
+.clubinfo-table td:first-child{font-weight:600;color:var(--ink);padding-right:2rem;width:180px}
+.clubinfo-table td:last-child{color:var(--muted)}
+
+/* ── HITTA HIT ── */
+.map-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:start;margin-top:2rem}
+.map-frame{aspect-ratio:16/10;border-radius:4px;overflow:hidden;border:1px solid var(--rule)}
+.map-frame iframe{width:100%;height:100%;border:none;display:block}
+.contact-stack{display:flex;flex-direction:column;gap:1.1rem}
+.ci strong{display:block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--light);margin-bottom:.2rem}
+.ci span,.ci a{font-size:14.5px;color:var(--muted)}
+.ci a{color:var(--forest);font-weight:500}
+.ci a:hover{text-decoration:underline}
+.ci .sub-note{font-size:12px;color:var(--light);display:block;margin-top:.15rem}
+@media(max-width:700px){.map-grid{grid-template-columns:1fr}}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem}
+.footer-grid{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand{font-family:'Libre Baskerville',serif;font-size:1rem;color:#fff;font-weight:700;margin-bottom:.6rem}
+.footer-brand-sub{font-family:'Source Sans 3',sans-serif;font-size:13px;color:rgba(255,255,255,.4);line-height:1.65;font-weight:300}
+.footer-col h5{font-family:'Source Sans 3',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:.9rem}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:.35rem;transition:color .12s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{max-width:1060px;margin:2rem auto 0;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.footer-bottom span{font-size:11.5px;color:rgba(255,255,255,.25)}
+@media(max-width:800px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <img src="http://kbkbagskytte.se/wp-content/uploads/2022/11/Logga-urklippt-e1669791674473.png" alt="KBK logga" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="nav-logo-fallback" style="display:none">KBK</div>
+    <div class="nav-brand-text">Kungsängens Bågskytteklubb<small>Sedan 1962</small></div>
+  </a>
+  <div class="nav-links">
+    <div class="nav-drop">
+      <a href="#om-oss">Föreningen ▾</a>
+      <div class="sub">
+        <a href="#om-oss">Om KBK</a>
+        <a href="#styrelsen">Styrelsen</a>
+        <a href="#arsmoten">Årsmöten</a>
+        <a href="#klubbinfo">Klubbinformation</a>
+        <a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank">Stadgar (PDF)</a>
+        <a href="#hitta-hit">Hitta hit</a>
+      </div>
+    </div>
+    <a href="#kalender">Kalender</a>
+    <a href="#aktiviteter">Aktiviteter</a>
+    <a href="#tavlingar">Tävlingar</a>
+    <div class="nav-drop">
+      <a href="#membership">Bli Medlem ▾</a>
+      <div class="sub">
+        <a href="#membership">Ansökan & avgifter</a>
+        <a href="#para">Parabågskytte</a>
+        <a href="#for-medlemmar">För Medlemmar</a>
+        <a href="#trojor">Klubbtröjor</a>
+      </div>
+    </div>
+    <a href="#nyheter">Nyheter</a>
+    <a href="#prova-pa" class="nav-cta">Prova på →</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<nav class="mob-nav" id="mobNav">
+  <a href="#om-oss" onclick="closeMob()">Om KBK</a>
+  <a href="#styrelsen" onclick="closeMob()">Styrelsen</a>
+  <a href="#arsmoten" onclick="closeMob()">Årsmöten</a>
+  <a href="#kalender" onclick="closeMob()">Kalender</a>
+  <a href="#nyheter" onclick="closeMob()">Nyheter</a>
+  <a href="#aktiviteter" onclick="closeMob()">Aktiviteter</a>
+  <a href="#tavlingar" onclick="closeMob()">Tävlingar</a>
+  <a href="#membership" onclick="closeMob()">Bli Medlem</a>
+  <a href="#para" onclick="closeMob()">Parabågskytte</a>
+  <a href="#for-medlemmar" onclick="closeMob()">För Medlemmar</a>
+  <a href="#trojor" onclick="closeMob()">Klubbtröjor</a>
+  <a href="#hitta-hit" onclick="closeMob()">Hitta hit</a>
+  <a href="#prova-pa" class="mob-cta" onclick="closeMob()">Boka provskjutning →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Treeline SVG silhouette -->
+  <svg class="hero-svg" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,280 L0,180 L30,160 L60,120 L90,140 L120,80 L150,100 L160,60 L175,80 L190,40 L205,70 L220,30 L235,55 L250,20 L265,50 L280,35 L300,90 L320,70 L340,110 L360,80 L380,120 L400,100 L420,140 L440,115 L470,85 L500,130 L520,90 L540,110 L570,70 L600,95 L630,60 L650,85 L670,50 L690,75 L710,40 L730,65 L750,30 L770,55 L790,25 L810,60 L830,45 L850,80 L870,55 L900,100 L930,70 L960,110 L990,85 L1020,120 L1050,95 L1080,130 L1110,105 L1140,145 L1170,120 L1200,155 L1230,130 L1260,160 L1290,140 L1320,170 L1350,150 L1380,175 L1410,160 L1440,180 L1440,280 Z" fill="rgba(0,0,0,0.25)"/>
+    <path d="M0,280 L0,200 L40,185 L80,160 L110,175 L140,140 L170,155 L200,125 L220,140 L240,110 L260,130 L285,100 L310,120 L340,145 L370,125 L400,150 L430,135 L460,160 L490,140 L520,165 L560,145 L600,170 L640,150 L680,175 L720,155 L760,180 L800,160 L840,185 L880,165 L920,185 L960,170 L1000,190 L1050,175 L1100,195 L1150,180 L1200,200 L1260,185 L1320,200 L1380,190 L1440,205 L1440,280 Z" fill="rgba(0,0,0,0.35)"/>
+    <!-- Archer silhouette -->
+    <g transform="translate(1240,100)" fill="rgba(255,255,255,0.06)">
+      <circle cx="12" cy="8" r="8"/>
+      <path d="M12,16 L8,50 L16,50 M8,30 L-10,22 M8,30 L26,26"/>
+      <path d="M-12,20 Q-20,18 -28,14 M-28,14 L-28,24 M-12,20 L-12,24"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Kungsängens Bågskytteklubb</span>
+    <div class="hero-since">Grundad 18 juli 1962</div>
+    <h1>Bågskytte<br><em>i hjärtat av</em><br>Upplands-Bro</h1>
+    <p class="hero-lead">En tävlingsaktiv förening med egna banor i Aspvik. Vi tränar, tävlar och välkomnar nya skyttar — från 10 år och uppåt, hela året runt.</p>
+    <div class="hero-actions">
+      <a href="#prova-pa" class="btn btn-gold">Boka provskjutning</a>
+      <a href="#om-oss" class="btn btn-outline">Om föreningen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ÖPPETTIDER STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-lbl">Öppettider</span>
+    <div class="strip-items">
+      <div class="strip-item"><strong>Sommaren 2026</strong><span>22 jun – 23 aug: Onsdagar 18:00–20:00</span></div>
+      <div class="strip-item"><strong>Prova på</strong><span>Tisdagar hela sommaren 18:00–20:00</span></div>
+      <div class="strip-item"><strong>Parabågskytte</strong><span>Onsdagar, jämna veckor 18:00–20:00</span></div>
+    </div>
+    <span class="strip-note">Ändringar kan förekomma — se <a href="#kalender">kalendern</a></span>
+  </div>
+</div>
+
+<!-- NYHETER -->
+<section id="nyheter">
+  <div class="wrap">
+    <span class="sec-label rv">Klubbnyheter</span>
+    <h2 class="rv">Senaste nytt</h2>
+    <div class="rule rv"></div>
+    <div class="news-grid">
+      <div class="news-card rv">
+        <div class="news-card-body">
+          <div class="news-meta">16 juni 2026</div>
+          <h3>Anmäl dig till sommarens SM-tävlingar</h3>
+          <p>Tavel-SM, Fält-SM, 3D-SM och Jakt-SM. Föreningen betalar startavgifter för juniorer och EN tävling per år för seniorer. Anmäl dig via formuläret.</p>
+          <a href="#tavlingar" class="news-link">Läs mer och anmäl dig →</a>
+        </div>
+      </div>
+      <div class="news-card rv">
+        <div class="news-card-body">
+          <div class="news-meta">13 april 2026</div>
+          <h3>Prova på skogsskytte — 30 maj</h3>
+          <p>Alla medlemmar välkomnas att prova på att skjuta i skogen. Kom 09:00–11:00, vi samlas i grupper med instruktör. Prova de olika skytteformerna inför sommarens träning.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkQYBHq-_WeTRgQRBcWXTJVN2iBDojFURAdGwvQcSlNjRi-g/viewform" target="_blank" class="news-link">Anmäl dig här →</a>
+        </div>
+      </div>
+      <div class="news-card rv">
+        <div class="news-card-body">
+          <div class="news-meta">13 april 2026</div>
+          <h3>Arbets- och städdag 11 april — klar!</h3>
+          <p>Städdagen genomförd! Skogsbanorna fick en översyn med renovering av buttar, nya snitslar m.m. Buttarna på gården byggdes om och det städades inomhus och utomhus. Stort tack till alla som ställde upp!</p>
+          <a href="https://kbkbagskytte.se/anmalan-till-sommarens-sm-tavlingar/" target="_blank" class="news-link">Läs mer →</a>
+        </div>
+      </div>
+      <div class="news-card rv">
+        <div class="news-card-body">
+          <div class="news-meta">20 mars 2026</div>
+          <h3>Årsmöte 2026 genomfört</h3>
+          <p>Onsdagen den 18 mars samlades 15 medlemmar till föreningens årsmöte. Efter mötet var det fika och en trevlig samvaro. Stort tack till er som deltog!</p>
+          <a href="#arsmoten" class="news-link">Dokument från mötet →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KALENDER -->
+<section id="kalender" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Aktiviteter & träningar</span>
+    <h2 class="rv">Kalender</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:560px">Klubbens Google-kalender med alla träningar, tävlingar och evenemang. Uppdateras löpande av styrelsen — kontrollera alltid här för aktuella tider.</p>
+    <div class="cal-frame rv">
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FStockholm&showPrint=0&showTabs=0&showCalendars=0&src=a3VuZ3NhbmdlbnNiYWdza3l0dGVrbHViYkBnbWFpbC5jb20&src=c3Yuc3dlZGlzaCNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%233f51b5&color=%23d50000" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- OM OSS -->
+<section id="om-oss">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img rv">
+        <div class="about-img-archer">🏹</div>
+        <span class="about-img-label">Foto kommer</span>
+      </div>
+      <div class="rv">
+        <span class="sec-label">Om föreningen</span>
+        <h2>En klubb med rötter<br>och ambitioner</h2>
+        <div class="rule"></div>
+        <p style="margin-bottom:.9rem">Vår förening bildades den 18 juli 1962. Vi är en tävlingsaktiv klubb och våra skyttar har genom åren haft många fina framgångar vid VM, EM, NM, SM, DM och nationella tävlingar.</p>
+        <p style="margin-bottom:.9rem">Träningen bedrivs året runt i vår egen anläggning i Aspvik, vid väg 840 (Enköpingsvägen) mellan Kungsängen och Bro.</p>
+        <p>Vi samarbetar aktivt med Upplands-Bro och Järfälla kommuner för att sprida kunskap och stimulera vuxna, ungdomar och personer med intellektuell funktionsnedsättning att upptäcka sporten bågskytte.</p>
+        <div class="stat-row">
+          <div><div class="stat-num">1962</div><div class="stat-lbl">Grundad</div></div>
+          <div><div class="stat-num">VM</div><div class="stat-lbl">Tävlingsnivå</div></div>
+          <div><div class="stat-num">10+</div><div class="stat-lbl">Minsta ålder</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AKTIVITETER -->
+<section id="aktiviteter" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Vad vi erbjuder</span>
+    <h2 class="rv">Aktiviteter för alla nivåer</h2>
+    <div class="rule rv"></div>
+    <div class="act-grid">
+      <div class="act-card rv">
+        <div class="act-icon">🏹</div>
+        <h3>Prova på</h3>
+        <p>Testa bågskytte utan förkunskaper. Utrustning ingår att låna, ta bara med inomhusskor.</p>
+        <div class="act-detail">Tisdagar 18:00–20:00 · 50 kr/person · Från 10 år</div>
+        <a href="#prova-pa" class="act-link">Boka en plats →</a>
+      </div>
+      <div class="act-card rv">
+        <div class="act-icon">🎓</div>
+        <h3>Bågskytteskolan</h3>
+        <p>Fem tisdagskvällar med erfarna tränare. Lär dig grunderna ordentligt och bli ordinarie medlem.</p>
+        <div class="act-detail">5 tillfällen · 500 kr · Max 16 deltagare</div>
+        <a href="#skola" class="act-link">Se kommande kurser →</a>
+      </div>
+      <div class="act-card rv">
+        <div class="act-icon">🌲</div>
+        <h3>Skogsskytte</h3>
+        <p>Träna på våra skogsbanor i Aspvik. Fält- och 3D-skytte i naturlig terräng med instruktörer.</p>
+        <div class="act-detail">Se kalender för tider</div>
+        <a href="#kalender" class="act-link">Öppna kalender →</a>
+      </div>
+      <div class="act-card rv">
+        <div class="act-icon">🏆</div>
+        <h3>Tävlingsskytte</h3>
+        <p>Vi är tävlingsaktiva på alla nivåer. Klubben samordnar SM-anmälningar och betalar avgifter för juniorer.</p>
+        <div class="act-detail">Se sommarens SM-tävlingar</div>
+        <a href="#tavlingar" class="act-link">SM-tävlingar 2026 →</a>
+      </div>
+      <div class="act-card rv">
+        <div class="act-icon">♿</div>
+        <h3>Parabågskytte</h3>
+        <p>Bågskytte för personer med rörelsenedsättning. En paralympisk idrott med erfarna tränare och anpassad utrustning.</p>
+        <div class="act-detail">Onsdagar, jämna veckor 18:00–20:00</div>
+        <a href="#para" class="act-link">Läs mer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROVA PÅ -->
+<section id="prova-pa" class="bg-forest">
+  <div class="wrap">
+    <div class="book-wrap">
+      <div class="book-info rv">
+        <span class="sec-label">Prova på bågskytte</span>
+        <h2>Boka din plats direkt</h2>
+        <div class="rule"></div>
+        <p>Välj datum och omgång, fyll i dina uppgifter — och du är klar. Inga mejl fram och tillbaka.</p>
+        <ul>
+          <li>Öppen för alla från 10 år</li>
+          <li>All utrustning ingår att låna</li>
+          <li>Ta med ett par inomhusskor</li>
+          <li>Kostnad: 50 kr per person och tillfälle</li>
+          <li>Max 20 deltagare per omgång</li>
+          <li>Gillar du det? Anmäl dig till Bågskytteskolan hösten 2026</li>
+        </ul>
+        <p class="alt-link">Vill du hellre mejla? <a href="mailto:provapa@kbkbagskytte.se">provapa@kbkbagskytte.se</a><br>Ange vilket datum och vilken omgång du vill delta i.</p>
+      </div>
+
+      <div class="book-card rv" id="bookCard">
+        <h3>Provskjutning — Sommaren 2026</h3>
+
+        <div id="slotList">
+          <!-- YouTube video embed -->
+          <div style="margin-bottom:1rem;border-radius:4px;overflow:hidden;aspect-ratio:16/9">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/E6snrcTrBzQ" frameborder="0" allowfullscreen style="display:block"></iframe>
+          </div>
+
+          <div class="date-hdr">30 juni</div>
+          <button class="slot-btn" onclick="pickSlot(this,'30 jun','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">3 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'30 jun','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">8 platser kvar</span></button>
+
+          <div class="date-hdr">7 juli</div>
+          <button class="slot-btn" onclick="pickSlot(this,'7 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-low">6 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'7 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">9 platser kvar</span></button>
+
+          <div class="date-hdr">14 juli — Fullbokad</div>
+          <button class="slot-btn" disabled><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-full">Fullbokad</span></button>
+          <button class="slot-btn" disabled><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-full">Fullbokad</span></button>
+
+          <div class="date-hdr">21 juli</div>
+          <button class="slot-btn" onclick="pickSlot(this,'21 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'21 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+
+          <div class="date-hdr">28 juli</div>
+          <button class="slot-btn" onclick="pickSlot(this,'28 jul','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'28 jul','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+
+          <div class="date-hdr">4 augusti</div>
+          <button class="slot-btn" onclick="pickSlot(this,'4 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'4 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+
+          <div class="date-hdr">11 augusti</div>
+          <button class="slot-btn" onclick="pickSlot(this,'11 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'11 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+
+          <div class="date-hdr">18 augusti</div>
+          <button class="slot-btn" onclick="pickSlot(this,'18 aug','Omg 1: 18:00–19:00')"><span class="slot-time">Omgång 1 &nbsp;18:00–19:00</span><span class="badge b-open">20 platser kvar</span></button>
+          <button class="slot-btn" onclick="pickSlot(this,'18 aug','Omg 2: 19:00–20:00')"><span class="slot-time">Omgång 2 &nbsp;19:00–20:00</span><span class="badge b-open">20 platser kvar</span></button>
+        </div>
+
+        <div id="bookForm" style="display:none">
+          <div class="sel-confirm" id="selDisplay"></div>
+          <div class="form-row2">
+            <div class="fg"><label>Förnamn</label><input type="text" placeholder="Anna"></div>
+            <div class="fg"><label>Efternamn</label><input type="text" placeholder="Lindqvist"></div>
+          </div>
+          <div class="fg"><label>E-post</label><input type="email" placeholder="anna@example.com"></div>
+          <div class="fg"><label>Telefon</label><input type="tel" placeholder="070 123 45 67"></div>
+          <div class="fg">
+            <label>Antal personer</label>
+            <select id="pCount" onchange="updCost()">
+              <option value="1">1 person</option><option value="2">2 personer</option>
+              <option value="3">3 personer</option><option value="4">4 personer</option>
+            </select>
+          </div>
+          <div class="cost-pill">Kostnad: <strong id="cDisp">50 kr</strong> — betalas på plats</div>
+          <button class="submit-btn btn" onclick="doBook()">Bekräfta bokning</button>
+          <p class="small-note">Ingen förskottsbetalning. 50 kr/person betalas på plats.</p>
+        </div>
+
+        <div class="ok-state" id="bookOk">
+          <div class="ok-icon">✅</div>
+          <h4>Bokning bekräftad!</h4>
+          <p id="okDetails" style="margin-bottom:.4rem;font-weight:600;color:var(--ink)"></p>
+          <p>En bekräftelse skickas till din e-post. Kom ihåg att ta med inomhusskor!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BÅGSKYTTESKOLAN -->
+<section id="skola">
+  <div class="wrap">
+    <span class="sec-label rv">Lär dig grunderna</span>
+    <h2 class="rv">Bågskytteskolan</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:600px">Under fem tisdagskvällar lär du dig grunderna i bågskytte av erfarna tränare. Max 16 deltagare per kurs. Kostnad 500 kr. All utrustning ingår — ta med ett par inomhusskor.</p>
+    <div class="school-courses">
+      <div class="course-card rv"><span class="course-tag">Höst 2026 — Kurs 1</span><h4>25 aug – 22 sep</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
+      <div class="course-card rv"><span class="course-tag">Höst 2026 — Kurs 2</span><h4>29 sep – 3 nov</h4><p>Tisdagar 18:00–20:00. Uppehåll 27 okt (höstlov). Fem tillfällen totalt.</p></div>
+      <div class="course-card rv"><span class="course-tag">Vinter 2026 — Kurs 3</span><h4>17 nov – 15 dec</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
+    </div>
+    <div class="info-box rv" style="max-width:520px;margin-top:1.5rem">
+      <strong>Anmälan till Bågskytteskolan</strong>
+      <p>Mejla <a href="mailto:skola@kbkbagskytte.se">skola@kbkbagskytte.se</a>. Vi återkommer med besked om du har fått plats eller inte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SM-TÄVLINGAR -->
+<section id="tavlingar" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Tävlingsskytte</span>
+    <h2 class="rv">Sommarens SM-tävlingar 2026</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:620px">Föreningen betalar startavgifter för juniorer samt EN SM-tävling per år för seniorer. Anmäl dig via formuläret nedan — klubben sköter den gemensamma anmälan och betalningen.</p>
+    <div class="sm-grid">
+      <div class="sm-card rv">
+        <h4>Tavel-SM Utomhus</h4>
+        <div class="sm-row"><strong>Datum</strong><span>18–19 juli 2026</span></div>
+        <div class="sm-row"><strong>Arrangör</strong><span>BK Friskyttarna, Norrköping</span></div>
+        <div class="sm-row deadline"><strong>Sista anm.</strong><span>25 juni 2026 (till klubben)</span></div>
+        <a href="https://www.ianseo.net/TourData/2026/27191/Inbjudan.pdf" target="_blank" class="inv-link">Inbjudan (PDF) →</a>
+      </div>
+      <div class="sm-card rv">
+        <h4>Fält-SM</h4>
+        <div class="sm-row"><strong>Datum</strong><span>1–2 aug 2026</span></div>
+        <div class="sm-row"><strong>Arrangör</strong><span>Avesta BK</span></div>
+        <div class="sm-row deadline"><strong>Sista anm.</strong><span>17 juli 2026 (till klubben)</span></div>
+        <a href="https://www.ianseo.net/TourData/2026/25040/Inbjudan%20SM.pdf" target="_blank" class="inv-link">Inbjudan (PDF) →</a>
+      </div>
+      <div class="sm-card rv">
+        <h4>3D-SM</h4>
+        <div class="sm-row"><strong>Datum</strong><span>22–23 aug 2026</span></div>
+        <div class="sm-row"><strong>Arrangör</strong><span>BS Gotia / Borås BS</span></div>
+        <div class="sm-row deadline"><strong>Sista anm.</strong><span>2 aug 2026 (till klubben)</span></div>
+        <a href="https://www.ianseo.net/TourData/2026/28593/Inbjudan260521.pdf" target="_blank" class="inv-link">Inbjudan (PDF) →</a>
+      </div>
+      <div class="sm-card rv">
+        <h4>Jakt-SM</h4>
+        <div class="sm-row"><strong>Datum</strong><span>5–6 sep 2026</span></div>
+        <div class="sm-row"><strong>Arrangör</strong><span>Mjölby BS</span></div>
+        <div class="sm-row deadline"><strong>Sista anm.</strong><span>18 aug 2026 (till klubben)</span></div>
+        <a href="https://www.ianseo.net/TourData/2026/28094/Inbjudan%20Jakt%20SM%202026%20(3).pdf" target="_blank" class="inv-link">Inbjudan (PDF) →</a>
+      </div>
+    </div>
+    <div class="sm-note rv">
+      <strong>Regler för startavgifter:</strong> Föreningen betalar samtliga startavgifter för juniorer. Föreningen betalar startavgift för <strong>EN</strong> SM-tävling per år för seniorer. Senior som tidigare under året fått startavgift betald av föreningen betalar in avgifter för övriga tävlingar till klubben via Swish eller bankgiro — ange vilken/vilka tävlingar inbetalningen gäller. För eventuell samordning av boende och transporter, se vem som anmält sig via länken nedan.
+      <div class="sm-btns">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpHhhyA6C1Wf0mAJ38FWCdDqoUuSVfwOppLYd7L24R_O-94Q/viewform" target="_blank" class="btn btn-gold btn-sm">Anmälningsformulär →</a>
+        <a href="https://docs.google.com/spreadsheets/d/1wmHAFyMK2d0zz_MGjyhMN9Jxgak-hfnfj76BEQ85JCU/edit" target="_blank" class="btn btn-forest btn-sm">Se vilka som anmält sig →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARABÅGSKYTTE -->
+<section id="para">
+  <div class="wrap">
+    <div class="para-inner rv">
+      <div>
+        <span class="sec-label" style="color:var(--gold-lt)">Inkluderande idrott</span>
+        <h2 style="color:#fff">Parabågskytte</h2>
+        <div class="rule" style="background:var(--gold-lt)"></div>
+        <p>Kungsängens Bågskytteklubb bedriver träning för personer med rörelsenedsättning. Parabågskytte är en paralympisk idrott som ger alla möjligheten att uppleva och utöva bågskytte.</p>
+        <p>Nybörjarbågar finns att låna på plats och träningen bedrivs av erfarna tränare. Behöver du assistans behöver du lösa det själv.</p>
+        <p>Åldersgräns: från 10 år och uppåt. För yngre barn behöver en förälder närvara.</p>
+        <p><a href="https://www.paralympic.org/archery" target="_blank">Läs mer om parabågskytte på IPC:s webbplats →</a></p>
+      </div>
+      <div class="para-items">
+        <div class="para-item"><strong>Träningar</strong><span>Onsdagar, jämna veckor kl 18:00–20:00</span></div>
+        <div class="para-item"><strong>Åldersgräns</strong><span>Från 10 år. Yngre barn behöver ha förälder med.</span></div>
+        <div class="para-item"><strong>Utrustning</strong><span>Nybörjarbågar finns att låna på plats</span></div>
+        <div class="para-item"><strong>Assistans</strong><span>Behöver du assistans löser du det själv</span></div>
+        <div class="para-item"><strong>Anmälan</strong><span><a href="mailto:info@kbkbagskytte.se">info@kbkbagskytte.se</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLI MEDLEM -->
+<section id="membership" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Gå med i klubben</span>
+    <h2 class="rv">Bli Medlem</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:640px">Som medlem i KBK tränar du i vår anläggning, lånar utrustning och är del av en gemenskap sedan 1962. Ålder från 10 år och uppåt. Du förväntas delta på klubbens arbetsdagar (vanligen 2 ggr/år) och hjälpa till vid förberedelser och genomförande av tävlingar. Du ansvarar också för att meddela föreningen om/när du vill gå ur klubben.</p>
+
+    <div class="mem-grid rv">
+      <div class="mem-card feat">
+        <h3>Vuxen</h3>
+        <div class="mem-price">1 000 kr <small>/ år</small></div>
+        <ul class="mem-list">
+          <li>Från 21 år</li>
+          <li>Tillgång till alla träningar</li>
+          <li>Låna utrustning på plats</li>
+          <li>Delta i tävlingar (licens tillkommer)</li>
+          <li>Halvpris vid inträde jun–okt</li>
+          <li>Ingen avgift vid inträde nov–dec</li>
+        </ul>
+      </div>
+      <div class="mem-card">
+        <h3>Junior</h3>
+        <div class="mem-price" style="color:var(--forest)">750 kr <small>/ år</small></div>
+        <ul class="mem-list">
+          <li>Upp t.o.m. 20 år (från 10 år)</li>
+          <li>Tillgång till alla träningar</li>
+          <li>Låna utrustning på plats</li>
+          <li>Delta i tävlingar (licens tillkommer)</li>
+          <li>Halvpris vid inträde jun–okt</li>
+          <li>Ingen avgift vid inträde nov–dec</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fam-row rv"><strong>Familjemedlemskap:</strong><span>1 750 kr/år</span></div>
+
+    <div class="tbl-wrap rv" style="margin-top:2.5rem">
+      <h3>Tävlingslicenser 2026</h3>
+      <table>
+        <thead><tr><th>Licens</th><th>Åldersgrupp</th><th>Kostnad</th></tr></thead>
+        <tbody>
+          <tr><td>A-licens</td><td>Från det år man fyller 21 år</td><td>350 kr</td></tr>
+          <tr><td>B-licens</td><td>Från det år man fyller 13 år</td><td>230 kr</td></tr>
+          <tr><td>C-licens</td><td>Upp till 12 år</td><td>Ingen avgift</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="rv" style="font-size:13.5px;color:var(--muted);margin-top:.85rem;max-width:580px">Om du avser att tävla under kommande år kan du betala in tävlingslicensen tillsammans med medlemsavgiften. Om du vill börja tävla senare under året ska avgiften vara inbetald och din licens registrerad innan tävling. Ansökan om licens efter 1 november betalar ingen avgift för resterande del av året. För information om hur du skaffar och registrerar licens, kontakta klubben.</p>
+
+    <div class="pay-box rv">
+      <h4>Betalning</h4>
+      <div class="pay-row">
+        <div class="pay-item"><strong>Bankgiro</strong><span>5596-7087</span></div>
+        <div class="pay-item"><strong>Swish</strong><span>123 514 50 57</span></div>
+        <div class="pay-item"><strong>Ange vid betalning</strong><span class="note">Namn · Verksamhetsår · Typ (vuxen/junior) · ev. licens</span></div>
+      </div>
+      <p style="font-size:12.5px;color:var(--light);margin-top:.75rem">Önskar du kvitto för friskvårdsbidrag? Ange detta vid inbetalning. Årsavgift ska vara betald senast vid årsskiftet inför kommande verksamhetsår.</p>
+    </div>
+
+    <div class="steps rv">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Mejla ordföranden</h4>
+          <p>Skicka ett mejl till <a href="mailto:ordf@kbkbagskytte.se">ordf@kbkbagskytte.se</a> med ditt personnummer, namn och mobilnummer. Personnummer sparas ej på hemsidan — medlemsregistret hanteras separat.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Betala avgiften</h4>
+          <p>Betala in årsavgiften via bankgiro <strong>5596-7087</strong> eller Swish <strong>123 514 50 57</strong>. Se Avgifter ovan för belopp och vad du ska ange vid betalningen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KLUBBTRÖJOR -->
+<section id="trojor">
+  <div class="wrap">
+    <span class="sec-label rv">Klubbprofil</span>
+    <h2 class="rv">Klubbtröjor</h2>
+    <div class="rule rv"></div>
+    <div class="jersey-card rv">
+      <div class="jersey-icon">👕</div>
+      <div class="jersey-info">
+        <h3>KBK Klubbtröja</h3>
+        <p>Beställ klubbens officiella tröja. Information om modeller, storlekar och priser finns i informationsbladet nedan. Beställning görs sedan via mejl till klubben.</p>
+        <div class="jersey-btns">
+          <a href="https://drive.google.com/file/d/1KKmD4E-xpgYvTEKialpl6H-QfgybN1rR/view" target="_blank" class="btn btn-forest btn-sm">Infoblad & priser (PDF) →</a>
+          <a href="mailto:info@kbkbagskytte.se" class="btn btn-sm" style="border:1.5px solid var(--rule);color:var(--ink);background:var(--white)">Beställ via mejl</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÖR MEDLEMMAR -->
+<section id="for-medlemmar" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Intern information</span>
+    <h2 class="rv">För Medlemmar</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:560px">Dokument, protokoll och information för dig som är aktiv medlem i KBK. Medlemsinformation skickas ut till samtliga medlemmar vid minst 4 tillfällen under respektive verksamhetsår.</p>
+    <div class="member-cols rv">
+      <div class="member-col">
+        <h4>Medlemsinformation — nyhetsbrev</h4>
+        <span class="yr-hdr">2026</span>
+        <ul class="doc-list inline">
+          <li><a href="https://drive.google.com/file/d/1Zmv6tatI5Vg0m7J0xpYO5gvI7Fm_K4eB/view" target="_blank">Juni Extra</a></li>
+          <li><a href="https://drive.google.com/file/d/1r-ba7PgGJK56mO2TJZnaSQYHmd6XMCNw/view" target="_blank">Juni</a></li>
+          <li><a href="https://drive.google.com/file/d/1HeLmh-bD_g0gICJwLqcLDqedIGxq3V-P/view" target="_blank">Mars</a></li>
+          <li><a href="https://drive.google.com/file/d/1-ipDzoum4y7g6XpqDJtvN6DP4uhfDsFl/view" target="_blank">Februari</a></li>
+        </ul>
+        <span class="yr-hdr">2025</span>
+        <ul class="doc-list inline">
+          <li><a href="https://drive.google.com/file/d/1h14Q43Xq2BJpBo-jVyVH8vmuzPCS9zCj/view" target="_blank">December</a></li>
+          <li><a href="https://drive.google.com/file/d/18SDUcFkMKQybL1OvJPd0IRtGArVerm8G/view" target="_blank">Augusti</a></li>
+          <li><a href="https://drive.google.com/file/d/14mkkEdQllOzpxmqxOszl227PlJV21IuY/view" target="_blank">Juni</a></li>
+          <li><a href="https://drive.google.com/file/d/1M8Dj4GLl7BoYwDARer1k2ogas9lT_A_5/view" target="_blank">April</a></li>
+          <li><a href="https://drive.google.com/file/d/1952KA6YvOaYFyfE14LK7CzMTifc70Hcc/view" target="_blank">Februari</a></li>
+        </ul>
+        <span class="yr-hdr">2024</span>
+        <ul class="doc-list inline">
+          <li><a href="https://drive.google.com/file/d/1t447Sqaw_Ky074Wn6gpVIYMZIYGwJQDN/view" target="_blank">November</a></li>
+          <li><a href="https://drive.google.com/file/d/1s32gy6cHmk7cyXBOtx1haagd7ueNvVY3/view" target="_blank">Oktober</a></li>
+          <li><a href="https://drive.google.com/file/d/1O4MzB0ts-NlyU0M688KDI5p4qDHGk5v_/view" target="_blank">Augusti</a></li>
+          <li><a href="https://drive.google.com/file/d/1LfOVUit5q_3V0iQt4yrvhuug_8dT06xS/view" target="_blank">Maj</a></li>
+          <li><a href="https://drive.google.com/file/d/1lYcO9iob1w5mZ4QEluUlMXz8ZDC6y7EZ/view" target="_blank">April</a></li>
+          <li><a href="https://drive.google.com/file/d/1_Di7iQ_G63C0P80jXCuf6_b_oo4Ap3Lf/view" target="_blank">Mars</a></li>
+          <li><a href="https://drive.google.com/file/d/1MeiaktN8Th_tZp-lEvUTrmUbxb3eRXQA/view" target="_blank">Januari</a></li>
+        </ul>
+        <span class="yr-hdr">2023</span>
+        <ul class="doc-list inline">
+          <li><a href="https://drive.google.com/file/d/1fvqYQrgeTKUqm0Cd6Hil9g704x1fA5F-/view" target="_blank">December</a></li>
+          <li><a href="https://drive.google.com/file/d/1tnlYW35p6s2SszERmaypd5i6kd_-eqis/view" target="_blank">November</a></li>
+          <li><a href="https://drive.google.com/file/d/1-oYLU4nta7K-ozE7Vba3ydmUlSfdfTLT/view" target="_blank">Oktober</a></li>
+          <li><a href="https://drive.google.com/file/d/1ngOgfesvySiNLy25sHAjcPzFgMRMkKIv/view" target="_blank">Augusti</a></li>
+          <li><a href="https://drive.google.com/file/d/1plrvWOjbAcW5amFszdpgtx1H3c-hqbcH/view" target="_blank">Juni</a></li>
+          <li><a href="https://drive.google.com/file/d/1hCxwvf26gRnhaORo2WANYzpPaArmlkFN/view" target="_blank">April</a></li>
+          <li><a href="https://drive.google.com/file/d/1uGLlV3xOQ4avCtlxfv5Vhq4r7RY4JJe5/view" target="_blank">Mars</a></li>
+        </ul>
+      </div>
+      <div class="member-col">
+        <h4>Dokument & regler</h4>
+        <ul class="doc-list">
+          <li><a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank">Stadgar (PDF)</a></li>
+          <li><a href="https://drive.google.com/file/d/1KKmD4E-xpgYvTEKialpl6H-QfgybN1rR/view" target="_blank">Infoblad Klubbtröjor (PDF)</a></li>
+          <li><a href="https://drive.google.com/file/d/1o5cyccpbn_gkSsUKnSceXepusNfAr0cc/view" target="_blank">Hitta tävling (PDF)</a></li>
+          <li><a href="https://polisen.se/tjanster-tillstand/belastningsregistret/barn-annan-verksamhet/" target="_blank">Utdrag belastningsregister</a></li>
+        </ul>
+        <h4 style="margin-top:1.5rem">Externa resurser</h4>
+        <ul class="doc-list">
+          <li><a href="https://worldarchery.sport" target="_blank">World Archery</a></li>
+          <li><a href="https://www.bagskytte.se" target="_blank">Svenska Bågskytteförbundet</a></li>
+          <li><a href="https://www.ianseo.net/TourList.php" target="_blank">Ianseo — hitta tävlingar</a></li>
+          <li><a href="https://www.facebook.com/bagskytteklubben" target="_blank">KBK på Facebook</a></li>
+        </ul>
+      </div>
+      <div class="member-col">
+        <h4>Snabba betalningsuppgifter</h4>
+        <table style="margin-top:.5rem">
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">Vuxen</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">1 000 kr/år</td></tr>
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">Junior</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">750 kr/år</td></tr>
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">Familj</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">1 750 kr/år</td></tr>
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">A-licens</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">350 kr</td></tr>
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">B-licens</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">230 kr</td></tr>
+          <tr><td style="border:none;padding:.3rem 0;font-size:13px;font-weight:600;color:var(--ink);padding-right:1rem;background:none">C-licens</td><td style="border:none;padding:.3rem 0;font-size:13px;color:var(--muted);background:none">Ingen avgift</td></tr>
+        </table>
+        <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--rule)">
+          <div style="font-size:13px;margin-bottom:.3rem"><strong>Bankgiro:</strong> 5596-7087</div>
+          <div style="font-size:13px;margin-bottom:.3rem"><strong>Swish:</strong> 123 514 50 57</div>
+          <div style="font-size:13px"><strong>Org.nr:</strong> 813200-3685</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STYRELSEN -->
+<section id="styrelsen">
+  <div class="wrap">
+    <span class="sec-label rv">Föreningen</span>
+    <h2 class="rv">Styrelsen</h2>
+    <div class="rule rv"></div>
+    <div class="board-grid rv">
+      <div class="board-card">
+        <div class="board-av">NE</div>
+        <div class="board-role">Ordförande</div>
+        <div class="board-name">Nils-Erik Mellqvist</div>
+        <a href="mailto:ordf@kbkbagskytte.se" class="board-email">ordf@kbkbagskytte.se</a>
+      </div>
+      <div class="board-card">
+        <div class="board-av">JR</div>
+        <div class="board-role">Vice Ordförande</div>
+        <div class="board-name">Juan Redon</div>
+        <a href="mailto:viceordf@kbkbagskytte.se" class="board-email">viceordf@kbkbagskytte.se</a>
+      </div>
+      <div class="board-card">
+        <div class="board-av">PA</div>
+        <div class="board-role">Sekreterare</div>
+        <div class="board-name">Peder Ax</div>
+        <a href="mailto:sekreterare@kbkbagskytte.se" class="board-email">sekreterare@kbkbagskytte.se</a>
+      </div>
+      <div class="board-card">
+        <div class="board-av">TE</div>
+        <div class="board-role">Ledamot</div>
+        <div class="board-name">Tobias Ehn</div>
+        <span class="board-none">–</span>
+      </div>
+      <div class="board-card">
+        <div class="board-av">TL</div>
+        <div class="board-role">Ledamot</div>
+        <div class="board-name">Thomas Ljungdahl</div>
+        <span class="board-none">–</span>
+      </div>
+      <div class="board-card">
+        <div class="board-av">CE</div>
+        <div class="board-role">Styrelsesuppleant</div>
+        <div class="board-name">Carl Ehn</div>
+        <span class="board-none">–</span>
+      </div>
+      <div class="board-card">
+        <div class="board-av">JS</div>
+        <div class="board-role">Adj. Kassör</div>
+        <div class="board-name">Jan Sondér</div>
+        <a href="mailto:ekonomi@kbkbagskytte.se" class="board-email">ekonomi@kbkbagskytte.se</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÅRSMÖTEN -->
+<section id="arsmoten" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Föreningens demokrati</span>
+    <h2 class="rv">Årsmöten</h2>
+    <div class="rule rv"></div>
+    <p class="rv" style="max-width:640px">Årsmötet är föreningens högsta beslutande organ. Här har samtliga medlemmar rätten att komma med förslag (motioner). Styrelsen redovisar föreningens ekonomi, verksamhetsberättelse för föregående år, verksamhetsplan för kommande år och plan för kommande års ekonomi. Mer information finns i föreningens <a href="https://drive.google.com/file/d/1vn0PUakBI5-Qdrt2n0qt5nxYyJ4HfxHS/view" target="_blank">stadgar</a>.</p>
+
+    <div class="amote-docs rv" style="margin-top:2rem">
+      <div class="amote-block">
+        <h4>Protokoll — Årsmöten</h4>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/15dsRSGOemuyYcODR6GejAyfGlEUAki1_/view" target="_blank" class="proto-link">2023</a>
+          <a href="https://drive.google.com/file/d/1UL0H1CfFwPOvjsywealzYtslm1KtSNoq/view" target="_blank" class="proto-link">2024</a>
+          <a href="https://drive.google.com/file/d/1ZME59DPNsy0INwzVZkPu-zpSnUUQqkU0/view" target="_blank" class="proto-link">2025</a>
+          <a href="https://drive.google.com/file/d/1tC8zOWBH2nJhlnMkmKx6w5zZZwunwYCm/view" target="_blank" class="proto-link">2026</a>
+        </div>
+      </div>
+      <div class="amote-block">
+        <h4>Protokoll — Konstituerande möte</h4>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/11QVVQfNvidUPo1EbzMgz2aZ01qwtSR01/view" target="_blank" class="proto-link">2023</a>
+          <a href="https://drive.google.com/file/d/1sQ0GpkMSPo
+          <a href="https://drive.google.com/file/d/1sQ0GpkMSPoIjr2YA5ZwGIn-179bAXQcZ/view" target="_blank" class="proto-link">2024</a>
+          <a href="https://drive.google.com/file/d/1C7SvUE1plyHsK-MnvHp-yLf1CBK5Zkzu/view" target="_blank" class="proto-link">2025</a>
+          <a href="https://drive.google.com/file/d/1A0RuAgVqIWDIjYiFM3PyoVD8mpTg1lWP/view" target="_blank" class="proto-link">2026</a>
+        </div>
+      </div>
+      <div class="amote-block">
+        <h4>Extra Årsmöte</h4>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/1YkGdRU7c7JmDkEeqw2_n4sZlheVq2kOl/view" target="_blank" class="proto-link">2023</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem" class="rv">
+      <h3 style="font-size:1.1rem;margin-bottom:1rem">Dokument Årsmöte 2026 (18 mars)</h3>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:1rem">15 medlemmar deltog. Mötet följdes av fika och trevlig samvaro.</p>
+      <ul class="doc-list" style="columns:2;gap:1.5rem">
+        <li><a href="https://drive.google.com/file/d/1ue5jG0Keij-dsONmjgqADFnGTzTO5BGW/view" target="_blank">Kallelse</a></li>
+        <li><a href="https://drive.google.com/file/d/1mcjv-68dD35lCzya7wWu5ewbDb5PVy1-/view" target="_blank">Föredragningslista</a></li>
+        <li><a href="https://drive.google.com/file/d/1oAlaEU1Uw8nkf8MvmTE66nm3-RQUYcxb/view" target="_blank">Verksamhetsberättelse 2025</a></li>
+        <li><a href="https://drive.google.com/file/d/15ShqzeR3f-2nZ9A0kgFiYMcjCE7R1pNf/view" target="_blank">Resultatrapport</a></li>
+        <li><a href="https://drive.google.com/file/d/1F1dMS_cQjdpbOWlPaRRIdkLlnoNb-TwD/view" target="_blank">Balansrapport</a></li>
+        <li><a href="https://drive.google.com/file/d/1tDKzA5fEEY1uRtnud71dMwflzwrOUv9g/view" target="_blank">Revisorernas berättelse</a></li>
+        <li><a href="https://drive.google.com/file/d/1UZnC7R4TWL_VQbMF7lS26gUDyBuVQ5j-/view" target="_blank">Förslag årsavgifter 2027</a></li>
+        <li><a href="https://drive.google.com/file/d/1rhCJaAVbjebQOjZWh_lptMCppSgZrFgz/view" target="_blank">Verksamhetsplan 2026</a></li>
+        <li><a href="https://drive.google.com/file/d/1XEM0xl0y_h5kbMHbAGX9zFi39jU4eHZj/view" target="_blank">Budget 2026</a></li>
+        <li><a href="https://drive.google.com/file/d/1Gk_qGllRL570wc50MKpWP_egraNqQKRH/view" target="_blank">Proposition 1 2026</a></li>
+        <li><a href="https://drive.google.com/file/d/1nNsn67Ll-9EcNcGhsnv6zI2gEXrivRsz/view" target="_blank">Valberedningens förslag</a></li>
+      </ul>
+    </div>
+
+    <div style="margin-top:2rem" class="rv">
+      <h3 style="font-size:1.1rem;margin-bottom:1rem">Protokoll — Styrelsemöten</h3>
+      <div style="margin-bottom:.75rem"><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2026</span>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/1mOU2ZCGcKIkhCfAdXRrlb6o_meODZlmn/view" target="_blank" class="proto-link">2026-02-26</a>
+          <a href="https://drive.google.com/file/d/1jP2wc63D3uY9-2pPsJvrOI_kjtbblWi0/view" target="_blank" class="proto-link">2026-05-28</a>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem"><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2025</span>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/1tUdOCVc-qy-1tmIvtDAMUwTZ7rHjdy2p/view" target="_blank" class="proto-link">2025-02-13</a>
+          <a href="https://drive.google.com/file/d/1i83BQDT5naW_m-gMWyxmkz3fhczf8wcH/view" target="_blank" class="proto-link">2025-05-15</a>
+          <a href="https://drive.google.com/file/d/1hdoSFwLl5o4zE3Yje1M0L4uKpfgBtsq-/view" target="_blank" class="proto-link">2025-08-28</a>
+          <a href="https://drive.google.com/file/d/1eA2_MIfdtgTWqzfC3qvPt5m1afmPHd7L/view" target="_blank" class="proto-link">2025-11-27</a>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem"><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2024</span>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/1WmAtmq4eK9J1VU0A2d6ZyjrqD9bFqm19/view" target="_blank" class="proto-link">2024-01-15</a>
+          <a href="https://drive.google.com/file/d/1JEzHEiPwqCLyz2uVdExNicl0TuWpaju7/view" target="_blank" class="proto-link">2024-02-19</a>
+          <a href="https://drive.google.com/file/d/1tUC6CK9BQUAhbF9xCAfFgI6w_CmNcjgJ/view" target="_blank" class="proto-link">2024-03-25</a>
+          <a href="https://drive.google.com/file/d/1lRdjNShX5it2qsd7fqDrP0oSDERKf7Mf/view" target="_blank" class="proto-link">2024-05-20</a>
+          <a href="https://drive.google.com/file/d/1VUpW80jYuDFwTSQ19SXpC1b6P0zXaB9l/view" target="_blank" class="proto-link">2024-08-19</a>
+          <a href="https://drive.google.com/file/d/1EJ9L7Eq75V2w1FH5ecUi50JbwmDCBDD8/view" target="_blank" class="proto-link">2024-10-07</a>
+          <a href="https://drive.google.com/file/d/1KlbFJc6cwvIhwl80LZ5o7XoFK7lLJXrj/view" target="_blank" class="proto-link">2024-11-04</a>
+          <a href="https://drive.google.com/file/d/1v7BtcF8YnDami3M5mYqHtff_lMAm-bfL/view" target="_blank" class="proto-link">2024-12-16</a>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem"><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2023</span>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/10QIvd4-VKVGIKUTI1E4qMzveosydhxw4/view" target="_blank" class="proto-link">2023-03-02</a>
+          <a href="https://drive.google.com/file/d/17zsJrZK04i0Vu9hn2ZWw69Hi8a39c-Sf/view" target="_blank" class="proto-link">2023-04-17</a>
+          <a href="https://drive.google.com/file/d/1owrUiMm09w8wxsxkf63LfE-WPO5neBNB/view" target="_blank" class="proto-link">2023-08-21</a>
+          <a href="https://drive.google.com/file/d/1jDzb2hZyyHVwnFpANA2e5uE_G0olfx3L/view" target="_blank" class="proto-link">2023-10-02</a>
+          <a href="https://drive.google.com/file/d/1Ec66Mad_rkxxTTrVQqEpp8AtFH3XeOfi/view" target="_blank" class="proto-link">2023-11-20</a>
+        </div>
+      </div>
+      <div><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2022</span>
+        <div class="proto-links">
+          <a href="https://drive.google.com/file/d/1nP5CYyVbQdA7P3p8NsHrLTapPc2OGnjK/view" target="_blank" class="proto-link">2022-04-04</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KLUBBINFORMATION -->
+<section id="klubbinfo">
+  <div class="wrap" style="max-width:640px">
+    <span class="sec-label rv">Formell information</span>
+    <h2 class="rv">Klubbinformation</h2>
+    <div class="rule rv"></div>
+    <table class="clubinfo-table rv">
+      <tr><td>Föreningsnummer</td><td>7905-10</td></tr>
+      <tr><td>Organisationsnummer</td><td>813200-3685</td></tr>
+      <tr><td>Adress</td><td>Hasselbacksvägen 4, 196 93 Kungsängen</td></tr>
+      <tr><td>Mejladress</td><td><a href="mailto:info@kbkbagskytte.se">info@kbkbagskytte.se</a></td></tr>
+      <tr><td>Bankgiro</td><td>5596-7087</td></tr>
+      <tr><td>Swish</td><td>123 514 50 57</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- HITTA HIT -->
+<section id="hitta-hit" class="bg-stone">
+  <div class="wrap">
+    <span class="sec-label rv">Välkommen hit</span>
+    <h2 class="rv">Hitta till oss</h2>
+    <div class="rule rv"></div>
+    <div class="map-grid">
+      <div class="map-frame rv">
+        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBAM2o7PiQqwk15LC1XRH2e_KJ-jUa7KYk&zoom=13&q=Kungsängens+Bågskytteklubb" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="contact-stack rv">
+        <div class="ci"><strong>Adress</strong><span>Hasselbacksvägen 4, 196 93 Kungsängen</span><span class="sub-note">Aspvik, intill betongstationen vid väg 840 (Enköpingsvägen) mellan Kungsängen och Bro</span></div>
+        <div class="ci"><strong>Generell kontakt</strong><a href="mailto:info@kbkbagskytte.se">info@kbkbagskytte.se</a></div>
+        <div class="ci"><strong>Prova på</strong><a href="mailto:provapa@kbkbagskytte.se">provapa@kbkbagskytte.se</a></div>
+        <div class="ci"><strong>Bågskytteskolan</strong><a href="mailto:skola@kbkbagskytte.se">skola@kbkbagskytte.se</a></div>
+        <div class="ci"><strong>Ordförande / Medlemskap</strong><a href="mailto:ordf@kbkbagskytte.se">ordf@kbkbagskytte.se</a></div>
+        <div class="ci"><strong>Kassör</strong><a href="mailto:ekonomi@kbkbagskytte.se">ekonomi@kbkbagskytte.se</a></div>
+        <div class="ci"><strong>Följ oss</strong><a href="https://www.facebook.com/bagskytteklubben" target="_blank">KBK på Facebook →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Kungsängens Bågskytteklubb</div>
+      <p class="footer-brand-sub">En tävlingsaktiv bågskytteklubb i Upplands-Bro, grundad 18 juli 1962. Vi välkomnar skyttar på alla nivåer — från nybörjare till tävlingsskytt.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Aktiviteter</h5>
+      <a href="#prova-pa">Prova på</a>
+      <a href="#skola">Bågskytteskolan</a>
+      <a href="#tavlingar">SM-tävlingar</a>
+      <a href="#para">Parabågskytte</a>
+      <a href="#kalender">Kalender</a>
+    </div>
+    <div class="footer-col">
+      <h5>Föreningen</h5>
+      <a href="#om-oss">Om KBK</a>
+      <a href="#styrelsen">Styrelsen</a>
+      <a href="#arsmoten">Årsmöten</a>
+      <a href="#klubbinfo">Klubbinformation</a>
+      <a href="#membership">Bli Medlem</a>
+      <a href="#trojor">Klubbtröjor</a>
+      <a href="#for-medlemmar">För Medlemmar</a>
+    </div>
+    <div class="footer-col">
+      <h5>Kontakt</h5>
+      <a href="mailto:info@kbkbagskytte.se">info@kbkbagskytte.se</a>
+      <a href="mailto:provapa@kbkbagskytte.se">Prova på</a>
+      <a href="mailto:skola@kbkbagskytte.se">Bågskytteskolan</a>
+      <a href="https://www.facebook.com/bagskytteklubben" target="_blank">Facebook</a>
+      <a href="https://worldarchery.sport" target="_blank">World Archery</a>
+      <a href="https://www.bagskytte.se" target="_blank">SBF</a>
+      <a href="https://www.ianseo.net/TourList.php" target="_blank">Ianseo</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Kungsängens Bågskytteklubb · Org.nr 813200-3685 · Hasselbacksvägen 4, 196 93 Kungsängen</span>
+    <span>Grundad 18 juli 1962</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobNav').classList.toggle('open')}
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+let picked=null;
+function pickSlot(btn,date,time){
+  document.querySelectorAll('.slot-btn.picked').forEach(b=>b.classList.remove('picked'));
+  btn.classList.add('picked');picked={date,time};
+  const f=document.getElementById('bookForm');
+  document.getElementById('selDisplay').textContent='✓ Valt: '+date+' · '+time;
+  f.style.display='block';f.scrollIntoView({behavior:'smooth',block:'nearest'});updCost();
+}
+function updCost(){const n=parseInt(document.getElementById('pCount').value);document.getElementById('cDisp').textContent=(n*50)+' kr';}
+function doBook(){
+  if(!picked)return;const n=parseInt(document.getElementById('pCount').value);
+  document.getElementById('bookCard').querySelector('h3').style.display='none';
+  document.getElementById('slotList').style.display='none';
+  document.getElementById('bookForm').style.display='none';
+  const ok=document.getElementById('bookOk');ok.style.display='block';
+  document.getElementById('okDetails').textContent=picked.date+' · '+picked.time+' · '+n+' person'+(n>1?'er':'');
+}
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:0.07});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
