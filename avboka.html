@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avboka — KBK Bågskytteklubb</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --forest:#1B3828;
+  --forest-mid:#254D38;
+  --page:#F7F5F1;
+  --stone:#E8E3D8;
+  --ink:#1B2E1F;
+  --gold:#8B6914;
+  --gold-lt:#B08C3A;
+  --rule:#C8C2B4;
+  --muted:#6B6558;
+  --ok:#1A5C33;
+  --danger:#9B2020;
+}
+body{font-family:'Source Sans 3',sans-serif;background:var(--page);color:var(--ink);min-height:100vh;display:flex;flex-direction:column}
+nav{background:var(--forest);height:60px;display:flex;align-items:center;padding:0 1.75rem}
+.nav-brand{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700;color:#fff;text-decoration:none}
+.nav-brand small{display:block;font-family:'Source Sans 3',sans-serif;font-size:10px;color:rgba(255,255,255,.45);letter-spacing:1.5px;text-transform:uppercase;font-weight:400}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem}
+.card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:2.5rem;max-width:480px;width:100%;text-align:center}
+.card-icon{font-size:2.5rem;margin-bottom:1rem}
+.card h1{font-family:'Libre Baskerville',serif;font-size:1.5rem;margin-bottom:.5rem;color:var(--ink)}
+.card p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.booking-details{background:var(--stone);border-radius:4px;padding:1.25rem;margin:1.25rem 0;text-align:left}
+.detail-row{display:flex;justify-content:space-between;font-size:14px;padding:.3rem 0;border-bottom:1px solid var(--rule)}
+.detail-row:last-child{border-bottom:none}
+.detail-row strong{color:var(--ink)}
+.detail-row span{color:var(--muted)}
+.btn{display:inline-block;padding:.75rem 1.75rem;border-radius:3px;font-size:14px;font-weight:700;font-family:'Source Sans 3',sans-serif;cursor:pointer;border:none;text-decoration:none;transition:all .15s}
+.btn-danger{background:var(--danger);color:#fff;width:100%}
+.btn-danger:hover{background:#7a1818;color:#fff;text-decoration:none}
+.btn-outline{background:none;border:1.5px solid var(--rule);color:var(--muted);width:100%;margin-top:.65rem}
+.btn-outline:hover{border-color:var(--ink);color:var(--ink);text-decoration:none}
+.success{background:#eaf2ec;border:1px solid #4a7c59;border-radius:4px;padding:1.5rem;color:var(--ok)}
+.success h2{font-family:'Libre Baskerville',serif;font-size:1.2rem;margin-bottom:.4rem;color:var(--ok)}
+.error{background:#fce8e8;border:1px solid var(--danger);border-radius:4px;padding:1.5rem;color:var(--danger)}
+.loading{color:var(--muted);font-size:14px}
+footer{background:var(--forest);padding:1rem 1.75rem;text-align:center}
+footer span{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.5px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Kungsängens Bågskytteklubb<small>Sedan 1962</small></a>
+</nav>
+
+<main>
+  <div class="card" id="card">
+    <div class="loading">Hämtar bokningsinformation...</div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Kungsängens Bågskytteklubb · Org.nr 813200-3685</span>
+</footer>
+
+<script>
+const SUPABASE_URL = 'https://cdvmaicafibfzsfdwyus.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Gx7pJJINP4UGhD7UOn40wQ_IBnBOeY5';
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get('token');
+const card = document.getElementById('card');
+
+async function init() {
+  if (!token) {
+    showError('Ogiltig avbokningslänk. Kontrollera att du kopierade hela länken från mejlet.');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings?cancel_token=eq.${token}&select=*`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const [booking] = await res.json();
+
+    if (!booking) {
+      showError('Bokningen hittades inte. Den kan redan vara avbokad.');
+      return;
+    }
+
+    if (booking.cancelled) {
+      card.innerHTML = `
+        <div class="card-icon">✅</div>
+        <h1>Redan avbokad</h1>
+        <p>Den här bokningen är redan avbokad. Platsen är frigiven.</p>
+        <a href="index.html#prova-pa" class="btn btn-outline" style="display:block;margin-top:1rem">Boka en ny tid →</a>
+      `;
+      return;
+    }
+
+    card.innerHTML = `
+      <div class="card-icon">🏹</div>
+      <h1>Avboka provskjutning</h1>
+      <p>Du är på väg att avboka följande bokning. Platsen frigörs och du kan inte ångra dig.</p>
+      <div class="booking-details">
+        <div class="detail-row"><strong>Namn</strong><span>${booking.first_name} ${booking.last_name}</span></div>
+        <div class="detail-row"><strong>Datum</strong><span>${booking.date}</span></div>
+        <div class="detail-row"><strong>Omgång</strong><span>${booking.time_slot || booking.session}</span></div>
+        <div class="detail-row"><strong>Antal</strong><span>${booking.participants || booking.num_people || 1} person(er)</span></div>
+      </div>
+      <button class="btn btn-danger" onclick="cancelBooking('${booking.id}')">Ja, avboka min plats</button>
+      <a href="index.html#prova-pa" class="btn btn-outline" style="display:block">Avbryt — behåll bokningen</a>
+    `;
+
+  } catch(e) {
+    showError('Något gick fel. Prova att ladda om sidan eller mejla provapa@kbkbagskytte.se');
+  }
+}
+
+async function cancelBooking(id) {
+  const btn = document.querySelector('.btn-danger');
+  btn.textContent = 'Avbokar...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ cancelled: true })
+    });
+
+    if (res.ok) {
+      card.innerHTML = `
+        <div class="success">
+          <div style="font-size:2rem;margin-bottom:.75rem">✅</div>
+          <h2>Bokning avbokad</h2>
+          <p style="color:var(--ok);margin-top:.4rem">Din plats är frigiven. Välkommen att boka en ny tid när det passar.</p>
+        </div>
+        <a href="index.html#prova-pa" class="btn btn-outline" style="display:block;margin-top:1rem">Boka en ny tid →</a>
+      `;
+    } else {
+      btn.textContent = 'Ja, avboka min plats';
+      btn.disabled = false;
+      showError('Något gick fel. Mejla provapa@kbkbagskytte.se för att avboka manuellt.');
+    }
+  } catch(e) {
+    btn.textContent = 'Ja, avboka min plats';
+    btn.disabled = false;
+    showError('Något gick fel. Kontrollera din internetanslutning.');
+  }
+}
+
+function showError(msg) {
+  card.innerHTML = `
+    <div class="error">
+      <div style="font-size:2rem;margin-bottom:.75rem">❌</div>
+      <strong style="display:block;margin-bottom:.4rem">Kunde inte hitta bokningen</strong>
+      <p style="color:var(--danger)">${msg}</p>
+    </div>
+    <p style="margin-top:1.25rem;font-size:13px;color:var(--muted)">Behöver du hjälp? Mejla <a href="mailto:provapa@kbkbagskytte.se" style="color:var(--forest)">provapa@kbkbagskytte.se</a></p>
+  `;
+}
+
+init();
+</script>
+</body>
+</html>
