@@ -1443,7 +1443,7 @@ async function doBook() {
       ok.style.display = 'block';
       document.getElementById('okDetails').textContent =
         picked.date + ' · ' + picked.session + ' · ' + numPeople + ' person' + (numPeople > 1 ? 'er' : '');
-      ok.scrollIntoView({behavior:'smooth', block:'center'});
+      setTimeout(() => ok.scrollIntoView({behavior:'smooth', block:'center'}), 100);
       sendConfirmation('booking', {
         email, name: firstName + ' ' + lastName,
         date: picked.date, time_slot: picked.session, participants: numPeople,
@@ -1525,6 +1525,7 @@ async function submitSchool() {
       const ok = document.getElementById('skolaOk');
       ok.style.display = 'block';
       document.getElementById('skolaOkDetails').textContent = `${first} ${last}, ${course}`;
+      setTimeout(() => ok.scrollIntoView({behavior:'smooth', block:'center'}), 100);
       // Send confirmation email
       await sendConfirmation('school', {
         email, parent_name: first + ' ' + last,
@@ -1570,7 +1571,9 @@ async function submitJersey() {
     });
     if (res.ok) {
       document.getElementById('jerseyFormInner').style.display = 'none';
-      document.getElementById('jerseyOk').style.display = 'block';
+      const jerseyOk = document.getElementById('jerseyOk');
+      jerseyOk.style.display = 'block';
+      setTimeout(() => jerseyOk.scrollIntoView({behavior:'smooth', block:'center'}), 100);
       // Send confirmation email
       await sendConfirmation('jersey', {
         email, name: first + ' ' + last, phone,
