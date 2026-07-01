@@ -247,8 +247,6 @@ function applyLang() {
   document.getElementById('pinSubLabel').textContent = T.pinSub;
   document.getElementById('pinBtn').textContent = T.pinBtn;
   document.getElementById('logoutBtn').textContent = T.logout;
-  document.getElementById('filterBtn').textContent = T.visa;
-  document.getElementById('todayBtn').textContent = T.today;
   document.getElementById('refreshBtn').textContent = T.refresh;
   document.getElementById('langBtn').textContent = T.langToggle;
 }
@@ -341,7 +339,7 @@ async function loadBookings() {
           </div>
           ${rows.map(b => `
             <div class="booking-row ${b.arrived ? 'arrived' : ''}" id="row-${b.id}">
-              <button class="arrived-check" onclick="toggleArrived('${b.id}', ${b.arrived || false})">
+              <button class="arrived-check" onclick="toggleArrived('${b.id}')" data-arrived="${b.arrived || false}">
                 ${b.arrived ? '✓' : ''}
               </button>
               <div class="booking-info">
@@ -365,7 +363,10 @@ async function loadBookings() {
   }
 }
 
-async function toggleArrived(id, currentStatus) {
+async function toggleArrived(id) {
+  const row = document.getElementById(`row-${id}`);
+  const btn = row.querySelector('.arrived-check');
+  const currentStatus = btn.dataset.arrived === 'true';
   const newStatus = !currentStatus;
   try {
     await fetch(`${SUPABASE_URL}/rest/v1/bookings?id=eq.${id}`, {
@@ -378,8 +379,7 @@ async function toggleArrived(id, currentStatus) {
       },
       body: JSON.stringify({ arrived: newStatus })
     });
-    const row = document.getElementById(`row-${id}`);
-    const btn = row.querySelector('.arrived-check');
+    btn.dataset.arrived = newStatus;
     if (newStatus) {
       row.classList.add('arrived');
       btn.textContent = '✓';
