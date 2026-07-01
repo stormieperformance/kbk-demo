@@ -441,22 +441,13 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Treeline SVG silhouette -->
-  <svg class="hero-svg" viewBox="0 0 1440 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,280 L0,180 L30,160 L60,120 L90,140 L120,80 L150,100 L160,60 L175,80 L190,40 L205,70 L220,30 L235,55 L250,20 L265,50 L280,35 L300,90 L320,70 L340,110 L360,80 L380,120 L400,100 L420,140 L440,115 L470,85 L500,130 L520,90 L540,110 L570,70 L600,95 L630,60 L650,85 L670,50 L690,75 L710,40 L730,65 L750,30 L770,55 L790,25 L810,60 L830,45 L850,80 L870,55 L900,100 L930,70 L960,110 L990,85 L1020,120 L1050,95 L1080,130 L1110,105 L1140,145 L1170,120 L1200,155 L1230,130 L1260,160 L1290,140 L1320,170 L1350,150 L1380,175 L1410,160 L1440,180 L1440,280 Z" fill="rgba(0,0,0,0.25)"/>
-    <path d="M0,280 L0,200 L40,185 L80,160 L110,175 L140,140 L170,155 L200,125 L220,140 L240,110 L260,130 L285,100 L310,120 L340,145 L370,125 L400,150 L430,135 L460,160 L490,140 L520,165 L560,145 L600,170 L640,150 L680,175 L720,155 L760,180 L800,160 L840,185 L880,165 L920,185 L960,170 L1000,190 L1050,175 L1100,195 L1150,180 L1200,200 L1260,185 L1320,200 L1380,190 L1440,205 L1440,280 Z" fill="rgba(0,0,0,0.35)"/>
-    <!-- Archer silhouette -->
-    <g transform="translate(1240,100)" fill="rgba(255,255,255,0.06)">
-      <circle cx="12" cy="8" r="8"/>
-      <path d="M12,16 L8,50 L16,50 M8,30 L-10,22 M8,30 L26,26"/>
-      <path d="M-12,20 Q-20,18 -28,14 M-28,14 L-28,24 M-12,20 L-12,24"/>
-    </g>
-  </svg>
-  <div class="hero-content">
+  <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.45" src="kbkhero.mp4"></video>
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(30,50,32,0.5) 0%, rgba(20,35,22,0.88) 100%);z-index:1"></div>
+  <div class="hero-content" style="position:relative;z-index:2">
     <span class="hero-eyebrow">Kungsängens Bågskytteklubb</span>
     <div class="hero-since">Grundad 18 juli 1962</div>
     <h1>Bågskytte<br><em>i hjärtat av</em><br>Upplands-Bro</h1>
-    <p class="hero-lead">En tävlingsaktiv förening med egna banor i Aspvik. Vi tränar, tävlar och välkomnar nya skyttar — från 10 år och uppåt, hela året runt.</p>
+    <p class="hero-lead">En tävlingsaktiv förening med egna banor i Aspvik. Vi tränar, tävlar och välkomnar nya skyttar från 10 år och uppåt, hela året runt.</p>
     <div class="hero-actions">
       <a href="#prova-pa" class="btn btn-gold">Boka provskjutning</a>
       <a href="#om-oss" class="btn btn-outline">Om föreningen</a>
@@ -473,7 +464,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
       <div class="strip-item"><strong>Prova på</strong><span>Tisdagar hela sommaren 18:00–20:00</span></div>
       <div class="strip-item"><strong>Parabågskytte</strong><span>Onsdagar, jämna veckor 18:00–20:00</span></div>
     </div>
-    <span class="strip-note">Ändringar kan förekomma — se <a href="#kalender">kalendern</a></span>
+    <span class="strip-note">Ändringar kan förekomma Se <a href="#kalender">kalendern</a></span>
   </div>
 </div>
 
@@ -495,7 +486,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
       <div class="news-card rv">
         <div class="news-card-body">
           <div class="news-meta">13 april 2026</div>
-          <h3>Prova på skogsskytte — 30 maj</h3>
+          <h3>Prova på skogsskytte, 30 maj</h3>
           <p>Alla medlemmar välkomnas att prova på att skjuta i skogen. Kom 09:00–11:00, vi samlas i grupper med instruktör. Prova de olika skytteformerna inför sommarens träning.</p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkQYBHq-_WeTRgQRBcWXTJVN2iBDojFURAdGwvQcSlNjRi-g/viewform" target="_blank" class="news-link">Anmäl dig här →</a>
         </div>
@@ -503,7 +494,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
       <div class="news-card rv">
         <div class="news-card-body">
           <div class="news-meta">13 april 2026</div>
-          <h3>Arbets- och städdag 11 april — klar!</h3>
+          <h3>Arbets- och städdag 11 april, klar!</h3>
           <p>Städdagen genomförd! Skogsbanorna fick en översyn med renovering av buttar, nya snitslar m.m. Buttarna på gården byggdes om och det städades inomhus och utomhus. Stort tack till alla som ställde upp!</p>
           <a href="https://kbkbagskytte.se/anmalan-till-sommarens-sm-tavlingar/" target="_blank" class="news-link">Läs mer →</a>
         </div>
@@ -526,7 +517,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
     <span class="sec-label rv">Aktiviteter & träningar</span>
     <h2 class="rv">Kalender</h2>
     <div class="rule rv"></div>
-    <p class="rv" style="max-width:560px">Klubbens Google-kalender med alla träningar, tävlingar och evenemang. Uppdateras löpande av styrelsen — kontrollera alltid här för aktuella tider.</p>
+    <p class="rv" style="max-width:560px">Klubbens Google-kalender med alla träningar, tävlingar och evenemang. Uppdateras löpande av styrelsen Kontrollera alltid här för aktuella tider.</p>
     <div class="cal-frame rv">
       <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=Europe%2FStockholm&showPrint=0&showTabs=0&showCalendars=0&src=a3VuZ3NhbmdlbnNiYWdza3l0dGVrbHViYkBnbWFpbC5jb20&src=c3Yuc3dlZGlzaCNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%233f51b5&color=%23d50000" frameborder="0" scrolling="no" allowfullscreen></iframe>
     </div>
@@ -612,7 +603,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
         <span class="sec-label">Prova på bågskytte</span>
         <h2>Boka din plats direkt</h2>
         <div class="rule"></div>
-        <p>Välj datum och omgång, fyll i dina uppgifter — och du är klar. Inga mejl fram och tillbaka.</p>
+        <p>Välj datum och omgång, fyll i dina uppgifter och du är klar. Inga mejl fram och tillbaka.</p>
         <ul>
           <li>Öppen för alla från 10 år</li>
           <li>All utrustning ingår att låna</li>
@@ -622,10 +613,11 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
           <li>Gillar du det? Anmäl dig till Bågskytteskolan hösten 2026</li>
         </ul>
         <p class="alt-link">Vill du hellre mejla? <a href="mailto:provapa@kbkbagskytte.se">provapa@kbkbagskytte.se</a><br>Ange vilket datum och vilken omgång du vill delta i.</p>
+        <a href="#bookCard" onclick="document.getElementById('bookCard').scrollIntoView({behavior:'smooth',block:'start'})" class="btn btn-gold" style="margin-top:1.5rem;display:inline-flex;font-size:1rem;padding:.85rem 2rem">Välj datum och boka här</a>
       </div>
 
       <div class="book-card rv" id="bookCard">
-        <h3>Provskjutning — Sommaren 2026</h3>
+        <h3>Provskjutning, Sommaren 2026</h3>
 
         <div id="slotList">
           <!-- YouTube video embed -->
@@ -681,7 +673,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
               <option value="3">3 personer</option><option value="4">4 personer</option>
             </select>
           </div>
-          <div class="cost-pill">Kostnad: <strong id="cDisp">50 kr</strong> — betalas på plats</div>
+          <div class="cost-pill">Kostnad: <strong id="cDisp">50 kr</strong> betalas på plats</div>
           <div style="display:flex;gap:.65rem;align-items:flex-start;margin-bottom:1rem;padding:.75rem;background:var(--stone);border-radius:3px">
             <input type="checkbox" id="bConsent" style="margin-top:.2rem;flex-shrink:0;width:16px;height:16px;accent-color:var(--forest)">
             <label for="bConsent" style="font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer">Jag godkänner att Kungsängens Bågskytteklubb sparar mina uppgifter (namn, e-post, telefon) för att hantera min bokning. Uppgifterna används enbart för detta ändamål och raderas efter säsongen.</label>
@@ -707,12 +699,12 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
     <span class="sec-label rv">Lär dig grunderna</span>
     <h2 class="rv">Bågskytteskolan</h2>
     <div class="rule rv"></div>
-    <p class="rv" style="max-width:600px">Under fem tisdagskvällar lär du dig grunderna i bågskytte av erfarna tränare. Max 16 deltagare per kurs. Kostnad 500 kr. All utrustning ingår — ta med ett par inomhusskor.</p>
+    <p class="rv" style="max-width:600px">Under fem tisdagskvällar lär du dig grunderna i bågskytte av erfarna tränare. Max 16 deltagare per kurs. Kostnad 500 kr. All utrustning ingår ta med ett par inomhusskor.</p>
 
     <div class="school-courses">
-      <div class="course-card rv"><span class="course-tag">Höst 2026 — Kurs 1</span><h4>25 aug – 22 sep</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
-      <div class="course-card rv"><span class="course-tag">Höst 2026 — Kurs 2</span><h4>29 sep – 3 nov</h4><p>Tisdagar 18:00–20:00. Uppehåll 27 okt (höstlov). Fem tillfällen totalt.</p></div>
-      <div class="course-card rv"><span class="course-tag">Vinter 2026 — Kurs 3</span><h4>17 nov – 15 dec</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
+      <div class="course-card rv"><span class="course-tag">Höst 2026, Kurs 1</span><h4>25 aug – 22 sep</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
+      <div class="course-card rv"><span class="course-tag">Höst 2026, Kurs 2</span><h4>29 sep – 3 nov</h4><p>Tisdagar 18:00–20:00. Uppehåll 27 okt (höstlov). Fem tillfällen totalt.</p></div>
+      <div class="course-card rv"><span class="course-tag">Vinter 2026, Kurs 3</span><h4>17 nov – 15 dec</h4><p>Tisdagar 18:00–20:00. Fem tillfällen.</p></div>
     </div>
 
     <!-- Premium CTA + Form -->
@@ -728,9 +720,9 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
           <div class="fg full">
             <label>Önskad kurs</label>
             <select id="sfCourse">
-              <option value="Höst 2026 Kurs 1 (25 aug – 22 sep)">Höst 2026 — Kurs 1 (25 aug – 22 sep)</option>
-              <option value="Höst 2026 Kurs 2 (29 sep – 3 nov)">Höst 2026 — Kurs 2 (29 sep – 3 nov)</option>
-              <option value="Vinter 2026 Kurs 3 (17 nov – 15 dec)">Vinter 2026 — Kurs 3 (17 nov – 15 dec)</option>
+              <option value="Höst 2026 Kurs 1 (25 aug – 22 sep)">Höst 2026, Kurs 1 (25 aug – 22 sep)</option>
+              <option value="Höst 2026 Kurs 2 (29 sep – 3 nov)">Höst 2026, Kurs 2 (29 sep – 3 nov)</option>
+              <option value="Vinter 2026 Kurs 3 (17 nov – 15 dec)">Vinter 2026, Kurs 3 (17 nov – 15 dec)</option>
             </select>
           </div>
           <div class="fg full">
@@ -761,7 +753,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
     <span class="sec-label rv">Tävlingsskytte</span>
     <h2 class="rv">Sommarens SM-tävlingar 2026</h2>
     <div class="rule rv"></div>
-    <p class="rv" style="max-width:620px">Föreningen betalar startavgifter för juniorer samt EN SM-tävling per år för seniorer. Anmäl dig via formuläret nedan — klubben sköter den gemensamma anmälan och betalningen.</p>
+    <p class="rv" style="max-width:620px">Föreningen betalar startavgifter för juniorer samt EN SM-tävling per år för seniorer. Anmäl dig via formuläret nedan. Klubben sköter den gemensamma anmälan och betalningen.</p>
     <div class="sm-grid">
       <div class="sm-card rv">
         <h4>Tavel-SM Utomhus</h4>
@@ -793,7 +785,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
       </div>
     </div>
     <div class="sm-note rv">
-      <strong>Regler för startavgifter:</strong> Föreningen betalar samtliga startavgifter för juniorer. Föreningen betalar startavgift för <strong>EN</strong> SM-tävling per år för seniorer. Senior som tidigare under året fått startavgift betald av föreningen betalar in avgifter för övriga tävlingar till klubben via Swish eller bankgiro — ange vilken/vilka tävlingar inbetalningen gäller. För eventuell samordning av boende och transporter, se vem som anmält sig via länken nedan.
+      <strong>Regler för startavgifter:</strong> Föreningen betalar samtliga startavgifter för juniorer. Föreningen betalar startavgift för <strong>EN</strong> SM-tävling per år för seniorer. Senior som tidigare under året fått startavgift betald av föreningen betalar in avgifter för övriga tävlingar till klubben via Swish eller bankgiro, ange vilken/vilka tävlingar inbetalningen gäller. För eventuell samordning av boende och transporter, se vem som anmält sig via länken nedan.
       <div class="sm-btns">
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpHhhyA6C1Wf0mAJ38FWCdDqoUuSVfwOppLYd7L24R_O-94Q/viewform" target="_blank" class="btn btn-gold btn-sm">Anmälningsformulär →</a>
         <a href="https://docs.google.com/spreadsheets/d/1wmHAFyMK2d0zz_MGjyhMN9Jxgak-hfnfj76BEQ85JCU/edit" target="_blank" class="btn btn-forest btn-sm">Se vilka som anmält sig →</a>
@@ -890,7 +882,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
         <div class="step-num">1</div>
         <div>
           <h4>Mejla ordföranden</h4>
-          <p>Skicka ett mejl till <a href="mailto:ordf@kbkbagskytte.se">ordf@kbkbagskytte.se</a> med ditt personnummer, namn och mobilnummer. Personnummer sparas ej på hemsidan — medlemsregistret hanteras separat.</p>
+          <p>Skicka ett mejl till <a href="mailto:ordf@kbkbagskytte.se">ordf@kbkbagskytte.se</a> med ditt personnummer, namn och mobilnummer. Personnummer sparas ej på hemsidan, medlemsregistret hanteras separat.</p>
         </div>
       </div>
       <div class="step">
@@ -972,7 +964,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
     <p class="rv" style="max-width:560px">Dokument, protokoll och information för dig som är aktiv medlem i KBK. Medlemsinformation skickas ut till samtliga medlemmar vid minst 4 tillfällen under respektive verksamhetsår.</p>
     <div class="member-cols rv">
       <div class="member-col">
-        <h4>Medlemsinformation — nyhetsbrev</h4>
+        <h4>Medlemsinformation, nyhetsbrev</h4>
         <span class="yr-hdr">2026</span>
         <ul class="doc-list inline">
           <li><a href="https://drive.google.com/file/d/1Zmv6tatI5Vg0m7J0xpYO5gvI7Fm_K4eB/view" target="_blank">Juni Extra</a></li>
@@ -1021,7 +1013,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
         <ul class="doc-list">
           <li><a href="https://worldarchery.sport" target="_blank">World Archery</a></li>
           <li><a href="https://www.bagskytte.se" target="_blank">Svenska Bågskytteförbundet</a></li>
-          <li><a href="https://www.ianseo.net/TourList.php" target="_blank">Ianseo — hitta tävlingar</a></li>
+          <li><a href="https://www.ianseo.net/TourList.php" target="_blank">Ianseo, hitta tävlingar</a></li>
           <li><a href="https://www.facebook.com/bagskytteklubben" target="_blank">KBK på Facebook</a></li>
         </ul>
       </div>
@@ -1108,7 +1100,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
 
     <div class="amote-docs rv" style="margin-top:2rem">
       <div class="amote-block">
-        <h4>Protokoll — Årsmöten</h4>
+        <h4>Protokoll, Årsmöten</h4>
         <div class="proto-links">
           <a href="https://drive.google.com/file/d/15dsRSGOemuyYcODR6GejAyfGlEUAki1_/view" target="_blank" class="proto-link">2023</a>
           <a href="https://drive.google.com/file/d/1UL0H1CfFwPOvjsywealzYtslm1KtSNoq/view" target="_blank" class="proto-link">2024</a>
@@ -1117,7 +1109,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
         </div>
       </div>
       <div class="amote-block">
-        <h4>Protokoll — Konstituerande möte</h4>
+        <h4>Protokoll, Konstituerande möte</h4>
         <div class="proto-links">
           <a href="https://drive.google.com/file/d/11QVVQfNvidUPo1EbzMgz2aZ01qwtSR01/view" target="_blank" class="proto-link">2023</a>
           <a href="https://drive.google.com/file/d/1sQ0GpkMSPo
@@ -1153,7 +1145,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
     </div>
 
     <div style="margin-top:2rem" class="rv">
-      <h3 style="font-size:1.1rem;margin-bottom:1rem">Protokoll — Styrelsemöten</h3>
+      <h3 style="font-size:1.1rem;margin-bottom:1rem">Protokoll, Styrelsemöten</h3>
       <div style="margin-bottom:.75rem"><span class="yr-hdr" style="display:inline-block;margin:0 0 .4rem">2026</span>
         <div class="proto-links">
           <a href="https://drive.google.com/file/d/1mOU2ZCGcKIkhCfAdXRrlb6o_meODZlmn/view" target="_blank" class="proto-link">2026-02-26</a>
@@ -1276,7 +1268,7 @@ footer{background:var(--ink);color:rgba(255,255,255,.5);padding:3rem 2rem 1.5rem
   <div class="footer-grid">
     <div>
       <div class="footer-brand">Kungsängens Bågskytteklubb</div>
-      <p class="footer-brand-sub">En tävlingsaktiv bågskytteklubb i Upplands-Bro, grundad 18 juli 1962. Vi välkomnar skyttar på alla nivåer — från nybörjare till tävlingsskytt.</p>
+      <p class="footer-brand-sub">En tävlingsaktiv bågskytteklubb i Upplands-Bro, grundad 18 juli 1962. Vi välkomnar skyttar på alla nivåer, från nybörjare till tävlingsskytt.</p>
     </div>
     <div class="footer-col">
       <h5>Aktiviteter</h5>
@@ -1532,7 +1524,7 @@ async function submitSchool() {
       document.getElementById('skolaFormInner').style.display = 'none';
       const ok = document.getElementById('skolaOk');
       ok.style.display = 'block';
-      document.getElementById('skolaOkDetails').textContent = `${first} ${last} — ${course}`;
+      document.getElementById('skolaOkDetails').textContent = `${first} ${last}, ${course}`;
       // Send confirmation email
       await sendConfirmation('school', {
         email, parent_name: first + ' ' + last,
