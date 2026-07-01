@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KBK Admin</title>
+<style>
+  :root {
+    --bg: #1a2b1c;
+    --bg2: #243326;
+    --card: #2c3e2d;
+    --border: #3a4f3b;
+    --text: #e8e0d0;
+    --muted: #a0b89e;
+    --gold: #c9a84c;
+    --green: #4a7c59;
+    --red: #c0392b;
+    --font: 'Georgia', serif;
+    --sans: system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+
+  /* PIN SCREEN */
+  #pinScreen {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 2rem;
+  }
+  .pin-logo { font-family: var(--font); font-size: 1.4rem; color: var(--text); margin-bottom: 0.4rem; }
+  .pin-sub { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; }
+  .pin-input {
+    background: var(--card); border: 1px solid var(--border); color: var(--text);
+    padding: 0.9rem 1.2rem; font-size: 1.1rem; border-radius: 4px; width: 100%; max-width: 280px;
+    text-align: center; letter-spacing: 0.2em; margin-bottom: 1rem; outline: none;
+  }
+  .pin-input:focus { border-color: var(--gold); }
+  .pin-btn {
+    background: var(--gold); color: #1a2b1c; border: none; padding: 0.85rem 2rem;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; border-radius: 4px;
+    cursor: pointer; width: 100%; max-width: 280px; font-weight: 700;
+  }
+  .pin-error { color: var(--red); font-size: 13px; margin-top: 0.75rem; min-height: 20px; }
+
+  /* ADMIN APP */
+  #adminApp { display: none; }
+
+  .topbar {
+    background: var(--card); border-bottom: 1px solid var(--border);
+    padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .topbar-title { font-family: var(--font); font-size: 1rem; }
+  .topbar-right { display: flex; align-items: center; gap: 1rem; }
+  .lang-toggle {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); background: none; border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 3px; cursor: pointer; color: var(--muted);
+  }
+  .lang-toggle:hover { border-color: var(--gold); color: var(--gold); }
+  .logout-btn {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); background: none; border: none; cursor: pointer;
+  }
+  .logout-btn:hover { color: var(--text); }
+
+  .controls {
+    padding: 1rem 1.25rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border); background: var(--bg2);
+  }
+  .date-input {
+    background: var(--card); border: 1px solid var(--border); color: var(--text);
+    padding: 0.6rem 0.9rem; font-size: 13px; border-radius: 4px; outline: none;
+  }
+  .date-input:focus { border-color: var(--gold); }
+  .filter-btn {
+    background: var(--green); color: #fff; border: none; padding: 0.6rem 1.2rem;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 4px;
+    cursor: pointer;
+  }
+  .today-btn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 0.6rem 1rem; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer;
+  }
+  .today-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .refresh-btn {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    padding: 0.6rem 1rem; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    border-radius: 4px; cursor: pointer; margin-left: auto;
+  }
+  .refresh-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .summary {
+    padding: 0.75rem 1.25rem; background: var(--bg);
+    font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border);
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .summary strong { color: var(--text); }
+
+  .session-block { margin: 1rem 1.25rem; }
+  .session-header {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+  }
+  .session-count { color: var(--muted); }
+
+  .booking-row {
+    background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+    padding: 0.9rem 1rem; margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: border-color 0.2s, opacity 0.2s;
+  }
+  .booking-row.arrived { border-color: var(--green); opacity: 0.7; }
+  .booking-row.arrived .booking-name { text-decoration: line-through; color: var(--muted); }
+
+  .arrived-check {
+    width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+    background: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center;
+    justify-content: center; transition: all 0.2s; color: transparent; font-size: 14px;
+  }
+  .arrived-check:hover { border-color: var(--green); }
+  .booking-row.arrived .arrived-check { background: var(--green); border-color: var(--green); color: #fff; }
+
+  .booking-info { flex: 1; min-width: 0; }
+  .booking-name { font-size: 15px; font-weight: 500; margin-bottom: 2px; }
+  .booking-meta { font-size: 11px; color: var(--muted); }
+
+  .booking-ppl {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); flex-shrink: 0; text-align: right;
+  }
+  .booking-ppl strong { color: var(--text); font-size: 16px; display: block; }
+
+  .empty-state {
+    text-align: center; padding: 3rem 1.25rem; color: var(--muted);
+    font-size: 14px;
+  }
+  .loading { text-align: center; padding: 2rem; color: var(--muted); font-size: 13px; }
+
+  .no-bookings {
+    background: var(--card); border: 1px solid var(--border); border-radius: 4px;
+    padding: 1rem; color: var(--muted); font-size: 13px; text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    .controls { flex-direction: column; align-items: stretch; }
+    .refresh-btn { margin-left: 0; }
+    .summary { flex-direction: column; gap: 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PIN SCREEN -->
+<div id="pinScreen">
+  <div class="pin-logo">KBK Bågskytteklubb</div>
+  <div class="pin-sub" id="pinSubLabel">Personalinloggning</div>
+  <input class="pin-input" type="password" id="pinInput" placeholder="PIN" autocomplete="off">
+  <button class="pin-btn" onclick="checkPin()" id="pinBtn">Logga in</button>
+  <div class="pin-error" id="pinError"></div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="adminApp">
+  <div class="topbar">
+    <div class="topbar-title">KBK Admin</div>
+    <div class="topbar-right">
+      <button class="lang-toggle" onclick="toggleLang()" id="langBtn">EN</button>
+      <button class="logout-btn" onclick="logout()" id="logoutBtn">Logga ut</button>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input class="date-input" type="date" id="dateInput">
+    <button class="filter-btn" onclick="loadBookings()" id="filterBtn">Visa</button>
+    <button class="today-btn" onclick="setToday()" id="todayBtn">Idag</button>
+    <button class="refresh-btn" onclick="loadBookings()" id="refreshBtn">↻ Uppdatera</button>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <div id="bookingsList"></div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://cdvmaicafibfzsfdwyus.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Gx7pJJINP4UGhD7UOn40wQ_IBnBOeY5';
+const PIN = 'kbk2026';
+
+let lang = 'sv';
+
+const t = {
+  sv: {
+    pinSub: 'Personalinloggning',
+    pinBtn: 'Logga in',
+    pinError: 'Fel PIN, försök igen',
+    logout: 'Logga ut',
+    visa: 'Visa',
+    today: 'Idag',
+    refresh: '↻ Uppdatera',
+    session1: 'Omgång 1 · 18:00–19:00',
+    session2: 'Omgång 2 · 19:00–20:00',
+    other: 'Övriga tider',
+    total: 'Totalt',
+    arrived: 'Anlänt',
+    remaining: 'Väntade',
+    people: 'pers',
+    noBookings: 'Inga bokningar för detta datum',
+    noDate: 'Välj ett datum',
+    markArrived: '✓',
+    booked: 'Bokad',
+    arrivedLabel: 'Anlänt',
+    participants: 'pers',
+    langToggle: 'EN',
+  },
+  en: {
+    pinSub: 'Staff login',
+    pinBtn: 'Log in',
+    pinError: 'Wrong PIN, try again',
+    logout: 'Log out',
+    visa: 'Show',
+    today: 'Today',
+    refresh: '↻ Refresh',
+    session1: 'Session 1 · 18:00–19:00',
+    session2: 'Session 2 · 19:00–20:00',
+    other: 'Other times',
+    total: 'Total',
+    arrived: 'Arrived',
+    remaining: 'Waiting',
+    people: 'ppl',
+    noBookings: 'No bookings for this date',
+    noDate: 'Select a date',
+    markArrived: '✓',
+    booked: 'Booked',
+    arrivedLabel: 'Arrived',
+    participants: 'ppl',
+    langToggle: 'SV',
+  }
+};
+
+function toggleLang() {
+  lang = lang === 'sv' ? 'en' : 'sv';
+  applyLang();
+  loadBookings();
+}
+
+function applyLang() {
+  const T = t[lang];
+  document.getElementById('pinSubLabel').textContent = T.pinSub;
+  document.getElementById('pinBtn').textContent = T.pinBtn;
+  document.getElementById('logoutBtn').textContent = T.logout;
+  document.getElementById('filterBtn').textContent = T.visa;
+  document.getElementById('todayBtn').textContent = T.today;
+  document.getElementById('refreshBtn').textContent = T.refresh;
+  document.getElementById('langBtn').textContent = T.langToggle;
+}
+
+function checkPin() {
+  const val = document.getElementById('pinInput').value.trim().toLowerCase();
+  if (val === PIN) {
+    document.getElementById('pinScreen').style.display = 'none';
+    document.getElementById('adminApp').style.display = 'block';
+    setToday();
+    loadBookings();
+  } else {
+    document.getElementById('pinError').textContent = t[lang].pinError;
+    document.getElementById('pinInput').value = '';
+    document.getElementById('pinInput').focus();
+  }
+}
+
+document.getElementById('pinInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPin();
+});
+
+function logout() {
+  document.getElementById('pinScreen').style.display = 'flex';
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('pinInput').value = '';
+  document.getElementById('pinError').textContent = '';
+}
+
+function setToday() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateInput').value = today;
+  loadBookings();
+}
+
+async function loadBookings() {
+  const date = document.getElementById('dateInput').value;
+  const T = t[lang];
+  const list = document.getElementById('bookingsList');
+  const summary = document.getElementById('summary');
+
+  if (!date) {
+    list.innerHTML = `<div class="empty-state">${T.noDate}</div>`;
+    summary.innerHTML = '';
+    return;
+  }
+
+  list.innerHTML = `<div class="loading">Laddar...</div>`;
+  summary.innerHTML = '';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings?date=eq.${date}&order=time_slot.asc,created_at.asc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      }
+    });
+    const bookings = await res.json();
+
+    if (!bookings.length) {
+      list.innerHTML = `<div class="empty-state">${T.noBookings}</div>`;
+      return;
+    }
+
+    // Group by session
+    const sessions = {};
+    bookings.forEach(b => {
+      const key = b.time_slot || 'other';
+      if (!sessions[key]) sessions[key] = [];
+      sessions[key].push(b);
+    });
+
+    // Summary
+    const totalPeople = bookings.reduce((sum, b) => sum + (b.participants || 1), 0);
+    const arrivedPeople = bookings.filter(b => b.arrived).reduce((sum, b) => sum + (b.participants || 1), 0);
+    summary.innerHTML = `
+      <span>${T.total}: <strong>${totalPeople} ${T.people}</strong></span>
+      <span>${T.arrived}: <strong>${arrivedPeople} ${T.people}</strong></span>
+      <span>${T.remaining}: <strong>${totalPeople - arrivedPeople} ${T.people}</strong></span>
+    `;
+
+    // Render sessions
+    const sessionOrder = ['18:00–19:00', '19:00–20:00'];
+    const allKeys = [...new Set([...sessionOrder, ...Object.keys(sessions)])];
+
+    list.innerHTML = '';
+    allKeys.forEach(key => {
+      if (!sessions[key]) return;
+      const rows = sessions[key];
+      const sessionPeople = rows.reduce((sum, b) => sum + (b.participants || 1), 0);
+
+      let label = key;
+      if (key === '18:00–19:00') label = T.session1;
+      else if (key === '19:00–20:00') label = T.session2;
+
+      const block = document.createElement('div');
+      block.className = 'session-block';
+      block.innerHTML = `
+        <div class="session-header">
+          <span>${label}</span>
+          <span class="session-count">${sessionPeople} ${T.people}</span>
+        </div>
+        ${rows.map(b => `
+          <div class="booking-row ${b.arrived ? 'arrived' : ''}" id="row-${b.id}">
+            <button class="arrived-check" onclick="toggleArrived('${b.id}', ${b.arrived})" title="${b.arrived ? T.arrivedLabel : T.booked}">
+              ${b.arrived ? '✓' : ''}
+            </button>
+            <div class="booking-info">
+              <div class="booking-name">${b.first_name} ${b.last_name}</div>
+              <div class="booking-meta">${b.email}${b.phone ? ' · ' + b.phone : ''}</div>
+            </div>
+            <div class="booking-ppl">
+              <strong>${b.participants || 1}</strong>
+              ${T.participants}
+            </div>
+          </div>
+        `).join('')}
+      `;
+      list.appendChild(block);
+    });
+
+  } catch(err) {
+    list.innerHTML = `<div class="empty-state">Fel vid hämtning av bokningar</div>`;
+    console.error(err);
+  }
+}
+
+async function toggleArrived(id, currentStatus) {
+  const newStatus = !currentStatus;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/bookings?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ arrived: newStatus })
+    });
+    // Update UI without full reload
+    const row = document.getElementById(`row-${id}`);
+    const btn = row.querySelector('.arrived-check');
+    if (newStatus) {
+      row.classList.add('arrived');
+      btn.textContent = '✓';
+    } else {
+      row.classList.remove('arrived');
+      btn.textContent = '';
+    }
+    // Update summary
+    loadSummary();
+  } catch(err) {
+    console.error('Failed to update:', err);
+  }
+}
+
+async function loadSummary() {
+  const date = document.getElementById('dateInput').value;
+  const T = t[lang];
+  if (!date) return;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings?date=eq.${date}`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const bookings = await res.json();
+    const totalPeople = bookings.reduce((sum, b) => sum + (b.participants || 1), 0);
+    const arrivedPeople = bookings.filter(b => b.arrived).reduce((sum, b) => sum + (b.participants || 1), 0);
+    document.getElementById('summary').innerHTML = `
+      <span>${T.total}: <strong>${totalPeople} ${T.people}</strong></span>
+      <span>${T.arrived}: <strong>${arrivedPeople} ${T.people}</strong></span>
+      <span>${T.remaining}: <strong>${totalPeople - arrivedPeople} ${T.people}</strong></span>
+    `;
+  } catch(e) {}
+}
+
+// Init
+applyLang();
+</script>
+</body>
+</html>
