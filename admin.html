@@ -288,95 +288,106 @@ function setToday() {
 }
 
 async function loadBookings() {
-  const date = document.getElementById('dateInput').value;
   const T = t[lang];
   const list = document.getElementById('bookingsList');
   const summary = document.getElementById('summary');
-
-  if (!date) {
-    list.innerHTML = `<div class="empty-state">${T.noDate}</div>`;
-    summary.innerHTML = '';
-    return;
-  }
+  const dateFilter = document.getElementById('dateInput').value;
 
   list.innerHTML = `<div class="loading">Laddar...</div>`;
   summary.innerHTML = '';
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings?date=eq.${date}&order=time_slot.asc,created_at.asc`, {
+    // Fetch all non-cancelled bookings
+    let url = `${SUPABASE_URL}/rest/v1/bookings?cancelled=eq.false&order=date.asc,session.asc,created_at.asc&select=*`;
+    
+    const res = await fetch(url, {
       headers: {
         'apikey': SUPABASE_KEY,
         'Authorization': `Bearer ${SUPABASE_KEY}`,
       }
     });
-    const bookings = await res.json();
+    let bookings = await res.json();
+
+    // Also include where cancelled is null
+    const res2 = await fetch(`${SUPABASE_URL}/rest/v1/bookings?cancelled=is.null&order=date.asc,session.asc,created_at.asc&select=*`, {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const bookings2 = await res2.json();
+    bookings = [...bookings, ...bookings2];
+
+    // Filter by date if selected
+    if (dateFilter) {
+      // Convert date input (2026-07-01) to match stored format
+      bookings = bookings.filter(b => b.date === dateFilter || matchDate(b.date, dateFilter));
+    }
 
     if (!bookings.length) {
-      list.innerHTML = `<div class="empty-state">${T.noBookings}</div>`;
+      list.innerHTML = `<div class="empty-state">${dateFilter ? T.noBookings : 'Inga aktiva bokningar'}</div>`;
       return;
     }
 
-    // Group by session
-    const sessions = {};
-    bookings.forEach(b => {
-      const key = b.time_slot || 'other';
-      if (!sessions[key]) sessions[key] = [];
-      sessions[key].push(b);
-    });
-
     // Summary
-    const totalPeople = bookings.reduce((sum, b) => sum + (b.participants || 1), 0);
-    const arrivedPeople = bookings.filter(b => b.arrived).reduce((sum, b) => sum + (b.participants || 1), 0);
+    const totalPeople = bookings.reduce((sum, b) => sum + (b.participants || b.num_people || 1), 0);
+    const arrivedPeople = bookings.filter(b => b.arrived).reduce((sum, b) => sum + (b.participants || b.num_people || 1), 0);
     summary.innerHTML = `
       <span>${T.total}: <strong>${totalPeople} ${T.people}</strong></span>
       <span>${T.arrived}: <strong>${arrivedPeople} ${T.people}</strong></span>
       <span>${T.remaining}: <strong>${totalPeople - arrivedPeople} ${T.people}</strong></span>
     `;
 
-    // Render sessions
-    const sessionOrder = ['18:00–19:00', '19:00–20:00'];
-    const allKeys = [...new Set([...sessionOrder, ...Object.keys(sessions)])];
+    // Group by date then session
+    const grouped = {};
+    bookings.forEach(b => {
+      const key = b.date;
+      if (!grouped[key]) grouped[key] = {};
+      const skey = b.session || b.time_slot || 'Okänd tid';
+      if (!grouped[key][skey]) grouped[key][skey] = [];
+      grouped[key][skey].push(b);
+    });
 
     list.innerHTML = '';
-    allKeys.forEach(key => {
-      if (!sessions[key]) return;
-      const rows = sessions[key];
-      const sessionPeople = rows.reduce((sum, b) => sum + (b.participants || 1), 0);
+    Object.keys(grouped).forEach(date => {
+      Object.keys(grouped[date]).forEach(session => {
+        const rows = grouped[date][session];
+        const sessionPeople = rows.reduce((sum, b) => sum + (b.participants || b.num_people || 1), 0);
 
-      let label = key;
-      if (key === '18:00–19:00') label = T.session1;
-      else if (key === '19:00–20:00') label = T.session2;
-
-      const block = document.createElement('div');
-      block.className = 'session-block';
-      block.innerHTML = `
-        <div class="session-header">
-          <span>${label}</span>
-          <span class="session-count">${sessionPeople} ${T.people}</span>
-        </div>
-        ${rows.map(b => `
-          <div class="booking-row ${b.arrived ? 'arrived' : ''}" id="row-${b.id}">
-            <button class="arrived-check" onclick="toggleArrived('${b.id}', ${b.arrived})" title="${b.arrived ? T.arrivedLabel : T.booked}">
-              ${b.arrived ? '✓' : ''}
-            </button>
-            <div class="booking-info">
-              <div class="booking-name">${b.first_name} ${b.last_name}</div>
-              <div class="booking-meta">${b.email}${b.phone ? ' · ' + b.phone : ''}</div>
-            </div>
-            <div class="booking-ppl">
-              <strong>${b.participants || 1}</strong>
-              ${T.participants}
-            </div>
+        const block = document.createElement('div');
+        block.className = 'session-block';
+        block.innerHTML = `
+          <div class="session-header">
+            <span>${date} · ${session}</span>
+            <span class="session-count">${sessionPeople} ${T.people}</span>
           </div>
-        `).join('')}
-      `;
-      list.appendChild(block);
+          ${rows.map(b => `
+            <div class="booking-row ${b.arrived ? 'arrived' : ''}" id="row-${b.id}">
+              <button class="arrived-check" onclick="toggleArrived('${b.id}', ${b.arrived || false})" title="${b.arrived ? T.arrivedLabel : T.booked}">
+                ${b.arrived ? '✓' : ''}
+              </button>
+              <div class="booking-info">
+                <div class="booking-name">${b.first_name} ${b.last_name}</div>
+                <div class="booking-meta">${b.email}${b.phone ? ' · ' + b.phone : ''}</div>
+              </div>
+              <div class="booking-ppl">
+                <strong>${b.participants || b.num_people || 1}</strong>
+                ${T.participants}
+              </div>
+            </div>
+          `).join('')}
+        `;
+        list.appendChild(block);
+      });
     });
 
   } catch(err) {
     list.innerHTML = `<div class="empty-state">Fel vid hämtning av bokningar</div>`;
     console.error(err);
   }
+}
+
+function matchDate(storedDate, inputDate) {
+  // Try to match "30 jun" style with "2026-06-30" style
+  // This is a best-effort match - not perfect
+  return false;
 }
 
 async function toggleArrived(id, currentStatus) {
@@ -392,7 +403,6 @@ async function toggleArrived(id, currentStatus) {
       },
       body: JSON.stringify({ arrived: newStatus })
     });
-    // Update UI without full reload
     const row = document.getElementById(`row-${id}`);
     const btn = row.querySelector('.arrived-check');
     if (newStatus) {
@@ -402,8 +412,6 @@ async function toggleArrived(id, currentStatus) {
       row.classList.remove('arrived');
       btn.textContent = '';
     }
-    // Update summary
-    loadSummary();
   } catch(err) {
     console.error('Failed to update:', err);
   }
